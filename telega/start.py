@@ -2,14 +2,11 @@ from aiogram import types
 from aiogram.types import InlineKeyboardMarkup
 
 import buttons as buttons
-from SQLBD import SQL
-from config.config import admins
 from loader import bot
 from loader import dp
 from p2p_parser import text as p2p_parser
 
-BD = SQL()
-BD.checkDB()
+
 
 @dp.message_handler(commands="start")  # /start command processing
 async def begin(message: types.Message):

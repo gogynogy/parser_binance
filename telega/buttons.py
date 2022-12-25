@@ -1,8 +1,6 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton
 
-from SQLBD import SQL
 
-BD = SQL()
 
 menu = InlineKeyboardButton("Обновить", callback_data="Refresh")
 
