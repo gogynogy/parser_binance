@@ -1,5 +1,5 @@
-from telega.config.config import admins
-from telega.loader import bot
+from config.config import admins
+from loader import bot
 
 async def write_admin(message):
     for admin in admins:
