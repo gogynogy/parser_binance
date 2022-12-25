@@ -1,8 +1,8 @@
 from aiogram.utils import executor
 
 from start import dp
-from telega.notify_admins import on_start_up_notify
-from telega.setBotCommands import set_default_commands
+from notify_admins import on_start_up_notify
+from setBotCommands import set_default_commands
 
 async def on_startup(dp):
     await on_start_up_notify()
