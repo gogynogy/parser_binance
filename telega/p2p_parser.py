@@ -73,9 +73,10 @@ class CrossratesGetter:
             list.append(float(crossrate['adv']['price']))
         return list[5:]
 
+
 bank_RUS = ['TinkoffNew']
 bank_SRI = ['BANK']
-LKR_USDT = CrossratesGetter('LKR', 'USDT', "buy", bank_SRI)
+LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
 RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
 course_LKR = mean(LKR_USDT.give_list()) - mean(LKR_USDT.give_list()) * 0.01
 course_RUB = mean(RUB_USDT.give_list())
