@@ -4,7 +4,7 @@ from aiogram.types import InlineKeyboardMarkup
 import buttons as buttons
 from loader import bot
 from loader import dp
-from p2p_parser import text as p2p_parser
+from telega.p2p_parser import text as p2p_parser
 
 
 
