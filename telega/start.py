@@ -9,8 +9,9 @@ import buttons as buttons
 from loader import bot
 from loader import dp
 from p2p_parser import CrossratesGetter, get_percent
-
-timenow = datetime.now(pytz.timezone('Asia/Colombo')).strftime("%d.%m.%Y %H:%M")
+def give_time():
+    timenow = datetime.now(pytz.timezone('Asia/Colombo')).strftime("%d.%m.%Y %H:%M")
+    return timenow
 id_egor = 215007307
 
 def give_rus_course(usdt_rub):
@@ -33,7 +34,7 @@ def get_text():
     course_LKR = mean(LKR_USDT.give_list())
     course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
     curency = course_LKR / course_RUB
-    text = f'Актуальный курс на {timenow}\n' \
+    text = f'Актуальный курс на {give_time()}\n' \
            f'Сумма LKR      Курс     Сумма RUB\n' \
            f'50 000              {get_percent(curency, 8)}      {int(round(50000 / get_percent(curency, 8), -2))}\n' \
            f'100 000            {get_percent(curency, 7)}      {int(round(100000 / get_percent(curency, 7), -2))}\n' \
@@ -52,7 +53,7 @@ def get_text_egor():
     course_LKR = mean(LKR_USDT.give_list())
     course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
     curency = course_LKR / course_RUB
-    text2 = f'Расчет курсов обмена рублей на юге Шри Ланки. \nДата актуализации {timenow}\n' \
+    text2 = f'Расчет курсов обмена рублей на юге Шри Ланки. \nДата актуализации {give_time()}\n' \
             f'Контакт для заказа рупий @Real_Egor\n\n' \
             f'Мирисса/Велигама/Ахангама/Матара/Когала\n' \
             f'Сумма LKR      Курс     Сумма RUB\n' \
