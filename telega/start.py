@@ -55,7 +55,7 @@ def get_text_egor():
     curency = course_LKR / course_RUB
     text2 = f'Расчет курсов обмена рублей на юге Шри Ланки. \nДата актуализации {give_time()}\n' \
             f'Контакт для заказа рупий @Real_Egor\n\n' \
-            f'Мирисса/Велигама/Ахангама/Матара/Когала\n' \
+            f'<b>Мирисса/Велигама/Ахангама/Матара/Когала</b>\n' \
             f'Сумма LKR      Курс     Сумма RUB\n' \
             f'---------------------------------------------------\n' \
             f'50 000        |       {get_percent(curency, 8)}   |   {int(round(50000 / get_percent(curency, 8), -2))}\n' \
@@ -66,10 +66,10 @@ def get_text_egor():
             f'---------------------------------------------------\n' \
             f'400 000      |       {get_percent(curency, 5)}   |   {int(round(400000 / get_percent(curency, 5), -2))}\n' \
             f'---------------------------------------------------\n' \
-            f'В Мириссе, если сами доедите до точки\nвыдачи, курс будет минимальный {get_percent(curency, 6)}\n' \
+            f'<b>В Мириссе</b>, если сами доедите до точки\nвыдачи, курс будет минимальный {get_percent(curency, 6)}\n' \
             f'на любую сумму, дальше по сеткe\nВ Велигаме, если доберетесь до точки\nвыдачи и сделаете предоплату, ' \
             f'курс будет минимальный {get_percent(curency, 6)} на любую сумму.\n\n' \
-            f'Коломбо (минимальная сумма 60 000 руб, по предварительной договоренности)\n' \
+            f'<b>В Коломбо</b> (минимальная сумма 60 000 руб, по предварительной договоренности)\n' \
             f'Сумма LKR      Курс     Сумма RUB\n' \
             f'---------------------------------------------------\n' \
             f'300 000       |       {get_percent(curency, 8)}   |   {int(round(300000 / get_percent(curency, 8), -2))}\n' \
@@ -80,7 +80,7 @@ def get_text_egor():
             f'---------------------------------------------------\n' \
             f'1 000 000   |       {get_percent(curency, 5)}   |   {int(round(1000000 / get_percent(curency, 5), -2))}\n' \
             f'---------------------------------------------------\n' \
-            f'В Канди и Элле доступен обмен по фиксированному курсу {get_percent(curency, 6)}, сумма от 15 000 рублей\n' \
+            f'<b>В Канди и Элле</b> доступен обмен по фиксированному курсу {get_percent(curency, 6)}, сумма от 15 000 рублей\n' \
             f'---------------------------------------------------\n' \
             f'80 000        |       {get_percent(curency, 6)}   |   {int(round(80000 / get_percent(curency, 6), -2))}\n' \
             f'---------------------------------------------------\n' \
@@ -93,37 +93,23 @@ def get_text_egor():
     return text2
 @dp.message_handler(commands="start")  # /start command processing
 async def begin(message: types.Message):
-    if message.chat.id == id_egor:
-        try:
-            await bot.edit_message_text(text=get_text(),
-                                        chat_id=message.chat.id,
-                                        message_id=message.message_id,
-                                        reply_markup=InlineKeyboardMarkup(row_width=1).add(buttons.menu))
-        except:
-            await bot.send_message(chat_id=message.chat.id,
-                                   text=get_text(),
-                                   reply_markup=InlineKeyboardMarkup(row_width=1).add(buttons.menu))
-    else:
-        try:
-            await bot.edit_message_text(text=get_text(),
-                                        chat_id=message.chat.id,
-                                        message_id=message.message_id,
-                                        reply_markup=InlineKeyboardMarkup(row_width=1).add(buttons.menu))
-        except:
-            await bot.send_message(chat_id=message.chat.id,
-                                   text=get_text(),
-                                   reply_markup=InlineKeyboardMarkup(row_width=1).add(buttons.menu))
+    try:
+        await bot.edit_message_text(text=get_text_egor(),
+                                    chat_id=message.chat.id,
+                                    message_id=message.message_id,
+                                    parse_mode='HTML',
+                                    reply_markup=InlineKeyboardMarkup(row_width=1).add(buttons.menu))
+    except:
+        await bot.send_message(chat_id=message.chat.id,
+                               text=get_text_egor(),
+                               parse_mode='HTML',
+                               reply_markup=InlineKeyboardMarkup(row_width=1).add(buttons.menu))
+
 
 
 @dp.callback_query_handler(lambda c: c.data == "Refresh")
 async def StartSclad(call: types.callback_query):
-    if call.message.chat.id == id_egor:
-        await bot.edit_message_text(text=get_text(),
-                                    chat_id=call.message.chat.id,
-                                    message_id=call.message.message_id,
-                                    reply_markup=InlineKeyboardMarkup(row_width=1).add(buttons.menu))
-    else:
-        await bot.edit_message_text(text=get_text(),
-                                    chat_id=call.message.chat.id,
-                                    message_id=call.message.message_id,
-                                    reply_markup=InlineKeyboardMarkup(row_width=1).add(buttons.menu))
+    await bot.edit_message_text(text=get_text_egor(),
+                                chat_id=call.message.chat.id,
+                                message_id=call.message.message_id,
+                                reply_markup=InlineKeyboardMarkup(row_width=1).add(buttons.menu))
