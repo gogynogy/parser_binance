@@ -3,7 +3,7 @@ from aiogram.utils import executor
 from start import dp
 from notify_admins import on_start_up_notify
 from setBotCommands import set_default_commands
-from SQLBD import SQL
+from telega.SQLBD import SQL
 
 SQL = SQL()
 

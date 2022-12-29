@@ -7,7 +7,7 @@ import buttons as buttons
 from loader import bot
 from loader import dp
 from p2p_parser import CrossratesGetter, get_percent
-from SQLBD import SQL
+from telega.SQLBD import SQL
 SQL = SQL()
 
 def give_time():
