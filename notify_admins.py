@@ -1,4 +1,4 @@
-from config.config import admins
+from config.config import admins, geo
 from loader import bot
 
 def write_admin(message):
@@ -6,9 +6,7 @@ def write_admin(message):
         bot.send_message(admin, message)
 
 async def on_start_up_notify():
-    for admin in admins:
-        await bot.send_message(admin, "бот запущен")
+    await bot.send_message(geo, "бот запущен")
 
 async def on_finish_notify():
-    for admin in admins:
-        await bot.send_message(admin, "бот наебнулся")
+    await bot.send_message(geo, "бот наебнулся")
