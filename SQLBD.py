@@ -1,5 +1,7 @@
 import sqlite3
 
+from notify_admins import write_admin
+
 
 class SQL:
     def __init__(self):
@@ -34,6 +36,17 @@ class SQL:
                 self.cursor.execute('''UPDATE ToDo SET Count = (Count + 1) WHERE TelegramNikName = ?''',
                                     (username, ))
         except sqlite3.Error as error:
-            print("Ошибка при работе с SQLite CheckAccount", error)
+            print(f"Ошибка при работе с SQLite CheckAccount {error}")
+        finally:
+            self.conn.commit()
+
+
+    def watch_activity(self):
+        try:
+            self.cursor.execute("SELECT * FROM ToDo")
+            text = "\n".join([f'{user[0]}) @{user[1]} обращений {user[2]}' for user in (self.cursor.fetchall())])
+            return text
+        except sqlite3.Error as error:
+            print(f"Ошибка при работе с SQLite watch_activity {error}")
         finally:
             self.conn.commit()

@@ -3,7 +3,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, KeyboardBu
 
 
 menu = InlineKeyboardButton("Обновить", callback_data="Refresh")
-
+activiti_check = InlineKeyboardButton("Посмотреть активность", callback_data="check_activiti")
 
 
 def cancelOperation():

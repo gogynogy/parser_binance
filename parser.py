@@ -1,7 +1,7 @@
 from aiogram.utils import executor
 
-from start import dp
-from notify_admins import on_start_up_notify
+from hendlers import dp
+from notify_admins import on_start_up_notify, on_finish_notify
 from setBotCommands import set_default_commands
 from SQLBD import SQL
 
@@ -13,5 +13,8 @@ async def on_startup(dp):
     SQL.checkDB()
     print("бот запущен")
 
+async def on_shutdown(dp):
+    await on_finish_notify()
+
 if __name__ == '__main__':
-    executor.start_polling(dispatcher=dp, on_startup=on_startup, skip_updates=True)
+    executor.start_polling(dispatcher=dp, on_startup=on_startup, on_shutdown=on_shutdown, skip_updates=True)
