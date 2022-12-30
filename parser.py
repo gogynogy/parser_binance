@@ -1,5 +1,4 @@
 from aiogram.utils import executor
-
 from hendlers import dp
 from notify_admins import on_start_up_notify, on_finish_notify
 from setBotCommands import set_default_commands
