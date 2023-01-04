@@ -1,4 +1,4 @@
-from config.config import admins, geo
+from users import admins, geo
 from loader import bot
 
 def write_admin(message):
