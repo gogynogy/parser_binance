@@ -6,6 +6,11 @@ menu = InlineKeyboardButton("Назад", callback_data="Refresh")
 activiti_check = InlineKeyboardButton("Посмотреть активность", callback_data="check_activiti")
 order = InlineKeyboardButton("Сделать заказ", callback_data="new_order")
 
+order_admin = InlineKeyboardButton("Сделки", callback_data="orders_admin")
+new_agent = InlineKeyboardButton("Добавить нового агента", callback_data="new_agent")
+open_orders = InlineKeyboardButton("Посмотреть открытые сделки", callback_data="open_orders")
+all_orders = InlineKeyboardButton("Посмотреть закрытые сделки", callback_data="all_orders")
+
 
 def cancelOperation():
     """Кнопка закрывания текущего действия"""

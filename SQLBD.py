@@ -70,3 +70,13 @@ class SQL:
             print(f"Ошибка при работе с SQLite make_order {error}")
         finally:
             self.conn.commit()
+
+    def watch_open_orders(self):
+        try:
+            self.cursor.execute("SELECT * FROM Orders WHERE Done = (?)", ('NO',))
+            text = "\n".join([f'@{user[2]} на {user[4]} LKR в городе {user[3]}' for user in (self.cursor.fetchall())])
+            return text
+        except sqlite3.Error as error:
+            print(f"Ошибка при работе с SQLite watch_open_orders {error}")
+        finally:
+            self.conn.commit()

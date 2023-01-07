@@ -16,7 +16,7 @@ SQL = SQL()
 async def begin(message: types.Message):
     SQL.CheckAccount(message.chat.id, message.chat.username)
     if message.chat.id in admins:
-        keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.refresh).add(buttons.activiti_check)
+        keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.refresh, buttons.activiti_check, buttons.order_admin)
     else:
         keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.refresh).add(buttons.order)
     await bot.send_message(chat_id=message.chat.id,
@@ -29,7 +29,7 @@ async def begin(message: types.Message):
 async def StartSclad(call: types.callback_query):
     SQL.CheckAccount(call.message.chat.id, call.message.chat.username)
     if call.message.chat.id in admins:
-        keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.refresh).add(buttons.activiti_check)
+        keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.refresh, buttons.activiti_check, buttons.order_admin)
     else:
         keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.refresh).add(buttons.order)
     await bot.edit_message_text(text=get_start_text(),
@@ -40,8 +40,7 @@ async def StartSclad(call: types.callback_query):
 
 
 @dp.message_handler(commands="info")  # /start command processing
-async def begin(message: types.Message):
-    SQL.CheckAccount(message.chat.id, message.chat.username)
+async def info(message: types.Message):
     keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.menu)
     await bot.send_message(chat_id=message.chat.id,
                            text=get_info_text,
