@@ -17,7 +17,6 @@ class SQL:
             userid TEXT,
             user_name TEXT
             )""")
-        self.conn.commit()
         self.cursor.execute("""CREATE TABLE IF NOT EXISTS `ToDo` (
             Id INTEGER PRIMARY KEY AUTOINCREMENT,
             TelegramNikName TEXT,
@@ -32,6 +31,12 @@ class SQL:
             Time TEXT,
             Done TEXT NOT NULL DEFAULT NO
             )""")
+        # self.cursor.execute('''CREATE TABLE IF NOT EXISTS `Agents` (
+        #     Id INTEGER PRIMARY KEY AUTOINCREMENT,
+        #     userid TEXT,
+        #     TelegramNikName TEXT,
+        #     Balance INT NOT NULL DEFAULT 0,
+        #     )''')
         self.conn.commit()
 
 
@@ -66,6 +71,9 @@ class SQL:
         try:
             self.cursor.execute(f"INSERT INTO Orders (userid, TelegramNikName, Location, HowMuch, Time)"
                                 f" VALUES (?, ?, ?, ?, ?)", (id, username, location, HowMuch, give_time()))
+            self.cursor.execute("SELECT * FROM Orders ORDER BY Id DESC LIMIT 1")
+            count = self.cursor.fetchone()
+            return count[0]
         except sqlite3.Error as error:
             print(f"Ошибка при работе с SQLite make_order {error}")
         finally:

@@ -1,7 +1,7 @@
 from statistics import mean
 
 from countstr import countSTR
-from p2p_parser import CrossratesGetter, give_rus_course, get_percent
+from p2p_parser import CrossratesGetter, give_rus_course, get_percent, calculate_profit
 from datetime import datetime
 import pytz
 
@@ -10,20 +10,25 @@ def give_time():
     timenow = datetime.now(pytz.timezone('Asia/Colombo')).strftime("%d.%m.%Y %H:%M")
     return timenow
 
-def get_text():
+def get_text_admin():
     bank_RUS = ['TinkoffNew']
     bank_SRI = ['BANK']
     LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
     RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
-    course_LKR = mean(LKR_USDT.give_list())
+    course_LKR = int(mean(LKR_USDT.give_list()))
     course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
     curency = course_LKR / course_RUB
+    curency_1 = (course_LKR - course_LKR * 0.01) / course_RUB
     text = f'Актуальный курс на {give_time()}\n' \
-           f'Сумма LKR      Курс     Сумма RUB\n' \
+           f'Сумма LKR      Курс     Сумма RUB\n\n' \
            f'50 000              {get_percent(curency, 8)}      {int(round(50000 / get_percent(curency, 8), -2))}\n' \
+           f'Профит с 50 000 LKR {round(calculate_profit(50000, 8))} LKR\n\n' \
            f'100 000            {get_percent(curency, 7)}      {int(round(100000 / get_percent(curency, 7), -2))}\n' \
+           f'Профит с 100 000 LKR {round(calculate_profit(100000, 7))} LKR\n\n' \
            f'200 000            {get_percent(curency, 6)}      {int(round(200000 / get_percent(curency, 6), -2))}\n' \
+           f'Профит с 200 000 LKR {round(calculate_profit(200000, 6))} LKR\n\n' \
            f'400 000            {get_percent(curency, 5)}      {int(round(400000 / get_percent(curency, 5), -2))}\n' \
+           f'Профит с 400 000 LKR {round(calculate_profit(400000, 5))} LKR\n\n' \
            f'USDT к LKR                   {round(course_LKR)}\n' \
            f'RUB к USDT                   {round(course_RUB, 2)}'
     return text
@@ -34,7 +39,7 @@ def get_start_text():
     bank_SRI = ['BANK']
     LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
     RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
-    course_LKR = mean(LKR_USDT.give_list())
+    course_LKR = int(mean(LKR_USDT.give_list()))
     course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
     curency = course_LKR / course_RUB
     text2 = f'Расчет курсов обмена рублей на юге Шри Ланки. \nДата актуализации: <b>{give_time()}</b>\n\n' \
@@ -73,9 +78,7 @@ def get_start_text():
             f'150 000      |       {get_percent(curency, 6)}   |   {int(round(150000 / get_percent(curency, 6), -2))}\n' \
             f'------------------------------------------------\n' \
             f'200 000      |       {get_percent(curency, 6)}   |   {int(round(200000 / get_percent(curency, 6), -2))}\n' \
-            f'------------------------------------------------\n\n' \
-            f'Курс рубля к USDT {course_RUB}\n' \
-            f'Курс рупии к USDT {int(course_LKR)}'
+            f'------------------------------------------------\n\n'
     return text2
 
 

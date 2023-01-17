@@ -5,12 +5,14 @@ refresh = InlineKeyboardButton("Обновить", callback_data="Refresh")
 menu = InlineKeyboardButton("Назад", callback_data="Refresh")
 activiti_check = InlineKeyboardButton("Посмотреть активность", callback_data="check_activiti")
 order = InlineKeyboardButton("Сделать заказ", callback_data="new_order")
+info_luser = InlineKeyboardButton("loser", callback_data="info_luser")
 
 order_admin = InlineKeyboardButton("Сделки", callback_data="orders_admin")
 new_agent = InlineKeyboardButton("Добавить нового агента", callback_data="new_agent")
 open_orders = InlineKeyboardButton("Посмотреть открытые сделки", callback_data="open_orders")
 all_orders = InlineKeyboardButton("Посмотреть закрытые сделки", callback_data="all_orders")
 
+agents = InlineKeyboardButton("Агенты", callback_data="agents")
 
 def cancelOperation():
     """Кнопка закрывания текущего действия"""
@@ -35,6 +37,11 @@ def make_button_locations():
     button_list = [InlineKeyboardButton(text=city, callback_data=start_order.new(what=city)) for city in locations]
     return buttons.add(*button_list)
 
+take_order = CallbackData('a', 'number')
+def take_order_work(numm):
+    print(numm)
+    return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text=f'Взять сделку {numm} в работу',
+                                                                      callback_data=take_order.new(number=numm)))
 
 continue_order = CallbackData('s', 'where', 'how_much')
 def order_count_money(location):

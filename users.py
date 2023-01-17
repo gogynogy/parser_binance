@@ -3,8 +3,7 @@ id_egor = 5899172512
 
 
 admins = [
-    geo,
-    id_egor
+    geo
 ]
 
 veli = [

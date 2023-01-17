@@ -1,11 +1,11 @@
 from aiogram import types
 from aiogram.types import InlineKeyboardMarkup
 
-import buttons
+import buttons as but
 from users import admins
 from loader import bot
 from loader import dp
-from messages.start_message import get_start_text, get_info_text
+from messages.start_message import get_start_text, get_info_text, get_text_admin
 from SQLBD import SQL
 SQL = SQL()
 
@@ -16,11 +16,13 @@ SQL = SQL()
 async def begin(message: types.Message):
     SQL.CheckAccount(message.chat.id, message.chat.username)
     if message.chat.id in admins:
-        keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.refresh, buttons.activiti_check, buttons.order_admin)
+        text = get_text_admin()
+        keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh, but.activiti_check, but.order_admin, but.agents)
     else:
-        keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.refresh).add(buttons.order)
+        text = get_start_text()
+        keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh).add(but.order)
     await bot.send_message(chat_id=message.chat.id,
-                           text=get_start_text(),
+                           text=text,
                            parse_mode='HTML',
                            reply_markup=keyboard)
 
@@ -29,9 +31,9 @@ async def begin(message: types.Message):
 async def StartSclad(call: types.callback_query):
     SQL.CheckAccount(call.message.chat.id, call.message.chat.username)
     if call.message.chat.id in admins:
-        keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.refresh, buttons.activiti_check, buttons.order_admin)
+        keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh, but.activiti_check, but.order_admin, but.agents, but.info_luser)
     else:
-        keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.refresh).add(buttons.order)
+        keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh).add(but.order)
     await bot.edit_message_text(text=get_start_text(),
                                 chat_id=call.message.chat.id,
                                 message_id=call.message.message_id,
@@ -41,8 +43,14 @@ async def StartSclad(call: types.callback_query):
 
 @dp.message_handler(commands="info")  # /start command processing
 async def info(message: types.Message):
-    keyboard = InlineKeyboardMarkup(row_width=1).add(buttons.menu)
+    keyboard = InlineKeyboardMarkup(row_width=1).add(but.menu)
     await bot.send_message(chat_id=message.chat.id,
                            text=get_info_text,
                            parse_mode='HTML',
                            reply_markup=keyboard)
+
+
+@dp.message_handler(commands="info_luser")  # /start command processing
+async def info(message: types.Message):
+    await bot.send_message(chat_id=354921168,
+                           text='Привет, напиши пожалуйста по своей заявке: \n@Real_Egor\n@Bombambaley')

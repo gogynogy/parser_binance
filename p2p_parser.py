@@ -79,6 +79,14 @@ def get_percent(what, percent):
     return round(count, 2)
 # print(round(curency, 2))
 
+def calculate_profit(what, percent):
+    count = what * percent / 100
+    return round(count, 2)
+
+
+def calculate_profit_minus_percent(what, percent):
+    what = what - what * -0.01
+
 
 def give_rus_course(usdt_rub):
     part = usdt_rub - int(usdt_rub)

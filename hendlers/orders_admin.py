@@ -17,7 +17,7 @@ async def start_order(call: types.callback_query):
                                 chat_id=call.message.chat.id,
                                 message_id=call.message.message_id,
                                 reply_markup = InlineKeyboardMarkup(row_width=1).
-                                add(but.new_agent, but.open_orders, but.all_orders))
+                                add(but.open_orders, but.all_orders, but.menu))
 
 
 @dp.callback_query_handler(lambda c: c.data == "open_orders")
@@ -26,4 +26,4 @@ async def start_order(call: types.callback_query):
                                 chat_id=call.message.chat.id,
                                 message_id=call.message.message_id,
                                 reply_markup = InlineKeyboardMarkup(row_width=1).
-                                add(but.new_agent, but.open_orders, but.all_orders))
+                                add(but.menu))
