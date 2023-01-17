@@ -71,7 +71,7 @@ class CrossratesGetter:
         list = []
         for crossrate in self.get_crossrates():
             list.append(float(crossrate['adv']['price']))
-        return list[5:]
+        return list
 
 
 def get_percent(what, percent):

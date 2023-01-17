@@ -31,7 +31,7 @@ async def begin(message: types.Message):
 async def StartSclad(call: types.callback_query):
     SQL.CheckAccount(call.message.chat.id, call.message.chat.username)
     if call.message.chat.id in admins:
-        keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh, but.activiti_check, but.order_admin, but.agents, but.info_luser)
+        keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh, but.activiti_check, but.order_admin, but.agents)
     else:
         keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh).add(but.order)
     await bot.edit_message_text(text=get_start_text(),
@@ -48,9 +48,3 @@ async def info(message: types.Message):
                            text=get_info_text,
                            parse_mode='HTML',
                            reply_markup=keyboard)
-
-
-@dp.message_handler(commands="info_luser")  # /start command processing
-async def info(message: types.Message):
-    await bot.send_message(chat_id=354921168,
-                           text='Привет, напиши пожалуйста по своей заявке: \n@Real_Egor\n@Bombambaley')

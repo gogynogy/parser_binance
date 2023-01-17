@@ -5,7 +5,6 @@ refresh = InlineKeyboardButton("Обновить", callback_data="Refresh")
 menu = InlineKeyboardButton("Назад", callback_data="Refresh")
 activiti_check = InlineKeyboardButton("Посмотреть активность", callback_data="check_activiti")
 order = InlineKeyboardButton("Сделать заказ", callback_data="new_order")
-info_luser = InlineKeyboardButton("loser", callback_data="info_luser")
 
 order_admin = InlineKeyboardButton("Сделки", callback_data="orders_admin")
 new_agent = InlineKeyboardButton("Добавить нового агента", callback_data="new_agent")
