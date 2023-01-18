@@ -30,6 +30,7 @@ def get_text_admin():
            f'400 000            {get_percent(curency, 5)}      {int(round(400000 / get_percent(curency, 5), -2))}\n' \
            f'Профит с 400 000 LKR {round(calculate_profit(400000, 5))} LKR\n\n' \
            f'USDT к LKR                   {round(course_LKR)}\n' \
+           f'USDT к LKR - 1%              {round(get_percent(course_LKR, 1))}\n' \
            f'RUB к USDT                   {round(course_RUB, 2)}'
     return text
 

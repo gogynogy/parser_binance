@@ -2,7 +2,7 @@ from aiogram import types
 from aiogram.types import InlineKeyboardMarkup
 
 import buttons as but
-from users import admins
+from users import agents
 from loader import bot
 from loader import dp
 from messages.start_message import get_start_text, get_info_text, get_text_admin
@@ -15,9 +15,10 @@ SQL = SQL()
 @dp.message_handler(commands="start")  # /start command processing
 async def begin(message: types.Message):
     SQL.CheckAccount(message.chat.id, message.chat.username)
-    if message.chat.id in admins:
+    if message.chat.id in agents:
         text = get_text_admin()
-        keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh, but.activiti_check, but.order_admin, but.agents)
+        keyboard = InlineKeyboardMarkup(row_width=1).\
+            add(but.refresh, but.send_message, but.activiti_check, but.order_admin)
     else:
         text = get_start_text()
         keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh).add(but.order)
@@ -30,15 +31,31 @@ async def begin(message: types.Message):
 @dp.callback_query_handler(lambda c: c.data == "Refresh")
 async def StartSclad(call: types.callback_query):
     SQL.CheckAccount(call.message.chat.id, call.message.chat.username)
-    if call.message.chat.id in admins:
-        keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh, but.activiti_check, but.order_admin, but.agents)
+    if call.message.chat.id in agents:
+        text = get_text_admin()
+        keyboard = InlineKeyboardMarkup(row_width=1).\
+            add(but.refresh, but.send_message, but.activiti_check, but.order_admin)
     else:
+        text = get_start_text()
         keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh).add(but.order)
-    await bot.edit_message_text(text=get_start_text(),
+    await bot.edit_message_text(text=text,
                                 chat_id=call.message.chat.id,
                                 message_id=call.message.message_id,
                                 parse_mode='HTML',
                                 reply_markup=keyboard)
+
+
+@dp.callback_query_handler(lambda c: c.data == "send_message")
+async def StartSclad(call: types.callback_query):
+    if call.message.chat.id in agents:
+        text = get_start_text()
+        keyboard = InlineKeyboardMarkup(row_width=1).\
+            add(but.refresh, but.send_message, but.activiti_check, but.order_admin)
+        await bot.edit_message_text(text=text,
+                                    chat_id=call.message.chat.id,
+                                    message_id=call.message.message_id,
+                                    parse_mode='HTML',
+                                    reply_markup=keyboard)
 
 
 @dp.message_handler(commands="info")  # /start command processing

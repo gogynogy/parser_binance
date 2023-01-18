@@ -1,9 +1,19 @@
 geo = 498332094
 id_egor = 5899172512
+om = 5792083325
+mrAlex = 243626777
 
 
 admins = [
-    geo
+    geo,
+    id_egor
+]
+
+agents = [
+    geo,
+    id_egor,
+    om,
+    mrAlex
 ]
 
 veli = [
