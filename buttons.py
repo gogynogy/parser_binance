@@ -4,7 +4,6 @@ from aiogram.utils.callback_data import CallbackData
 refresh = InlineKeyboardButton("Обновить", callback_data="Refresh")
 menu = InlineKeyboardButton("Назад", callback_data="Refresh")
 activiti_check = InlineKeyboardButton("Посмотреть активность", callback_data="check_activiti")
-order = InlineKeyboardButton("Сделать заказ", callback_data="new_order")
 send_message = InlineKeyboardButton("Текст для отправки", callback_data="send_message")
 
 order_admin = InlineKeyboardButton("Сделки", callback_data="orders_admin")
@@ -13,6 +12,11 @@ open_orders = InlineKeyboardButton("Посмотреть открытые сде
 all_orders = InlineKeyboardButton("Посмотреть закрытые сделки", callback_data="all_orders")
 
 agents = InlineKeyboardButton("Агенты", callback_data="agents")
+
+
+order = InlineKeyboardButton("Сделать заказ", callback_data="new_order")
+give_contact = KeyboardButton('Отправить свой контакт', request_contact=True, )
+
 
 def cancelOperation():
     """Кнопка закрывания текущего действия"""
