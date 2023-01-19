@@ -4,8 +4,7 @@ from countstr import countSTR
 from p2p_parser import CrossratesGetter, give_rus_course, get_percent, calculate_profit
 from datetime import datetime
 import pytz
-from prettytable import PrettyTable
-mytable = PrettyTable
+
 
 
 def give_time():
