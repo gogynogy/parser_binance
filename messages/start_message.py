@@ -22,10 +22,10 @@ def get_text_admin():
     curency = course_LKR / course_RUB
     text = f'Актуальный курс на {give_time()}\n' \
            f'Сумма LKR      Курс     Сумма RUB\n\n' \
-           f'50 000             {get_percent(curency, 8)}      {int(round(50000 / get_percent(curency, 8), -2))}\n' \
-           f'100 000            {get_percent(curency, 7)}      {int(round(100000 / get_percent(curency, 7), -2))}\n' \
-           f'200 000            {get_percent(curency, 6)}      {int(round(200000 / get_percent(curency, 6), -2))}\n' \
-           f'400 000            {get_percent(curency, 5)}      {int(round(400000 / get_percent(curency, 5), -2))}\n' \
+           f'50 000              {get_percent(curency, 8)}        {int(round(50000 / get_percent(curency, 8), -2))}\n' \
+           f'100 000            {get_percent(curency, 7)}        {int(round(100000 / get_percent(curency, 7), -2))}\n' \
+           f'200 000            {get_percent(curency, 6)}        {int(round(200000 / get_percent(curency, 6), -2))}\n' \
+           f'400 000            {get_percent(curency, 5)}        {int(round(400000 / get_percent(curency, 5), -2))}\n' \
            f'USDT к LKR                   {round(course_LKR)}\n' \
            f'USDT к LKR - 1%           {round(get_percent(course_LKR, 1))}\n' \
            f'RUB к USDT                   {round(course_RUB, 2)}'
