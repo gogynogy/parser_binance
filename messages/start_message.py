@@ -11,6 +11,14 @@ def give_time():
     timenow = datetime.now(pytz.timezone('Asia/Colombo')).strftime("%d.%m.%Y %H:%M")
     return timenow
 
+
+def courseUSDT(minu):
+    bank_SRI = ['BANK']
+    LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
+    course_LKR = int(mean(LKR_USDT.give_list()))
+    return course_LKR - minu
+
+
 def get_text_admin():
     bank_RUS = ['TinkoffNew']
     bank_SRI = ['BANK']
@@ -20,7 +28,7 @@ def get_text_admin():
     course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
     curency = course_LKR / course_RUB
     probel ='         |       '
-    text = f'Актуальный курс на <b>{give_time()}</b>\n\n' \
+    text = f'Актуальный курс RUB/LKR на <b>{give_time()}</b>\n\n' \
             f'Сумма LKR         Курс            Сумма RUB\n' \
             f'------------------------------------------------\n' \
             f'50 000 {probel} {get_percent(curency, 8)}{probel}{int(round(50000 / get_percent(curency, 8), -2))}\n' \
@@ -30,6 +38,17 @@ def get_text_admin():
             f'200 000{probel}{get_percent(curency, 6)}{probel}{int(round(200000 / get_percent(curency, 6), -2))}\n' \
             f'------------------------------------------------\n' \
             f'400 000{probel}{get_percent(curency, 5)}{probel}{int(round(400000 / get_percent(curency, 5), -2))}\n' \
+            f'------------------------------------------------\n\n' \
+           f'Актуальный курс RUB/LKR на <b>{give_time()}</b>\n\n' \
+            f'Сумма LKR         Курс            Сумма USDT\n' \
+            f'------------------------------------------------\n' \
+            f'50 000 {probel} {courseUSDT(22)}{probel}{int(50000 / courseUSDT(22))}\n' \
+            f'------------------------------------------------\n' \
+            f'100 000{probel}{courseUSDT(20)}{probel}{int(100000 / courseUSDT(20))}\n' \
+            f'------------------------------------------------\n' \
+            f'200 000{probel}{courseUSDT(17)}{probel}{int(200000 / courseUSDT(17))}\n' \
+            f'------------------------------------------------\n' \
+            f'400 000{probel}{courseUSDT(15)}{probel}{int(400000 / courseUSDT(15))}\n' \
             f'------------------------------------------------\n\n' \
            f'USDT к LKR                    {round(course_LKR)}\n' \
            f'USDT к LKR - 1%           {round(get_percent(course_LKR, 1))}\n' \
@@ -72,7 +91,8 @@ def get_start_text():
             f'------------------------------------------------\n' \
             f'1 000 000{probel}{get_percent(curency, 5)}{probel}{int(round(1000000 / get_percent(curency, 5), -2))}\n' \
             f'------------------------------------------------\n\n' \
-            f'<b>В Канди и Элле</b> доступен обмен по фиксированному курсу {get_percent(curency, 6)}, сумма от 15 000 рублей\n' \
+            f'<b>В Канди и Элле</b> доступен обмен по фиксированному курсу {get_percent(curency, 6)}, ' \
+            f'сумма от 15 000 рублей\n' \
             f'Сумма LKR         Курс            Сумма RUB\n' \
             f'------------------------------------------------\n' \
             f'80 000  {probel}{get_percent(curency, 6)}{probel}{int(round(80000 / get_percent(curency, 6), -2))}\n' \
