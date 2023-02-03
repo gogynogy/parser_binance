@@ -43,14 +43,12 @@ async def finish_order(call: types.callback_query, callback_data: dict):
                                     message_id=call.message.message_id,
                                     reply_markup=InlineKeyboardMarkup(row_width=1).add(but.menu))
     else:
-        await bot.edit_message_text(text=f'Заказ на сумму {how_much} в городе {location} отправлен модератору, ожидайте.\n'
-                                     f'Если тебе кажется, что про тебя забыли, пиши @Real_Egor',
+        await bot.edit_message_text(text=f'Заказ на сумму {how_much} в городе {location} отправлен модератору, ожидайте.',
                                 chat_id = call.message.chat.id,
                                 message_id = call.message.message_id,
                                 reply_markup = InlineKeyboardMarkup(row_width=1).add(but.menu))
     for admin in admins:
         await bot.send_message(chat_id=admin,
                                text=f'@{call.message.chat.username} заказал {how_much} в городе {location}',
-                               reply_markup = but.take_order_work(count_num))
-
-
+                               reply_markup = InlineKeyboardMarkup(row_width=1).add(
+                                   but.take_order_work(count_num), but.write_customer(call.message)))

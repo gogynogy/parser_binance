@@ -39,7 +39,7 @@ def get_text_admin():
             f'------------------------------------------------\n' \
             f'400 000{probel}{get_percent(curency, 5)}{probel}{int(round(400000 / get_percent(curency, 5), -2))}\n' \
             f'------------------------------------------------\n\n' \
-           f'Актуальный курс RUB/LKR на <b>{give_time()}</b>\n\n' \
+           f'Актуальный курс USDT/LKR на <b>{give_time()}</b>\n\n' \
             f'Сумма LKR         Курс            Сумма USDT\n' \
             f'------------------------------------------------\n' \
             f'50 000 {probel} {courseUSDT(22)}{probel}{int(50000 / courseUSDT(22))}\n' \

@@ -1,3 +1,4 @@
+from aiogram import types
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton
 from aiogram.utils.callback_data import CallbackData
 
@@ -43,9 +44,7 @@ def make_button_locations():
 
 take_order = CallbackData('a', 'number')
 def take_order_work(numm):
-    print(numm)
-    return InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text=f'Взять сделку {numm} в работу',
-                                                                      callback_data=take_order.new(number=numm)))
+    return InlineKeyboardButton(text=f'Взять сделку {numm} в работу', callback_data=take_order.new(number=numm))
 
 continue_order = CallbackData('s', 'where', 'how_much')
 def order_count_money(location):
@@ -62,3 +61,8 @@ def order_count_money(location):
                                         callback_data=continue_order.new(where=location, how_much=price))
                                         for price in prices]
     return buttons.add(*button_list).add(menu)
+
+def write_customer(message: types.Message):
+    button_url = f'tg://openmessage?user_id={message.chat.id}'
+    return InlineKeyboardButton(text=f'написать {message.chat.first_name}',
+                                url=button_url)
