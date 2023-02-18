@@ -10,8 +10,6 @@ from SQLBD import SQL
 SQL = SQL()
 
 
-
-
 @dp.message_handler(commands="start")  # /start command processing
 async def begin(message: types.Message):
     SQL.CheckAccount(message.chat.id, message.chat.username)
@@ -29,7 +27,7 @@ async def begin(message: types.Message):
 
 
 @dp.callback_query_handler(lambda c: c.data == "Refresh")
-async def StartSclad(call: types.callback_query):
+async def start_sclad_again(call: types.callback_query):
     SQL.CheckAccount(call.message.chat.id, call.message.chat.username)
     if call.message.chat.id in agents:
         text = get_text_admin()
@@ -46,7 +44,7 @@ async def StartSclad(call: types.callback_query):
 
 
 @dp.callback_query_handler(lambda c: c.data == "send_message")
-async def StartSclad(call: types.callback_query):
+async def start_sclad(call: types.callback_query):
     if call.message.chat.id in agents:
         text = get_start_text()
         keyboard = InlineKeyboardMarkup(row_width=1).\

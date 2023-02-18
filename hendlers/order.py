@@ -38,7 +38,7 @@ async def finish_order(call: types.callback_query, callback_data: dict):
     if call.message.chat.id == None:
         await bot.edit_message_text(text=f'Заказ на сумму {how_much} в городе {location} отправлен модератору.\n'
                                          f'Но твой ник в телеграмме скрыт и написать тебе нельзя('
-                                         f'По обмену пиши: @Real_Egor @Bombambaley',
+                                         f'По обмену пиши: @Real_Egor, @Bombambaley',
                                     chat_id=call.message.chat.id,
                                     message_id=call.message.message_id,
                                     reply_markup=InlineKeyboardMarkup(row_width=1).add(but.menu))
