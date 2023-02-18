@@ -42,17 +42,18 @@ def get_text_admin():
            f'Актуальный курс USDT/LKR на <b>{give_time()}</b>\n\n' \
             f'Сумма LKR         Курс            Сумма USDT\n' \
             f'------------------------------------------------\n' \
-            f'50 000 {probel} {courseUSDT(22)}{probel}{int(50000 / courseUSDT(22))}\n' \
+            f'50 000 {probel} {courseUSDT(14)}{probel}{int(50000 / courseUSDT(22))}\n' \
             f'------------------------------------------------\n' \
-            f'100 000{probel}{courseUSDT(20)}{probel}{int(100000 / courseUSDT(20))}\n' \
+            f'100 000{probel}{courseUSDT(13)}{probel}{int(100000 / courseUSDT(20))}\n' \
             f'------------------------------------------------\n' \
-            f'200 000{probel}{courseUSDT(17)}{probel}{int(200000 / courseUSDT(17))}\n' \
+            f'200 000{probel}{courseUSDT(12)}{probel}{int(200000 / courseUSDT(17))}\n' \
             f'------------------------------------------------\n' \
-            f'400 000{probel}{courseUSDT(15)}{probel}{int(400000 / courseUSDT(15))}\n' \
+            f'400 000{probel}{courseUSDT(10)}{probel}{int(400000 / courseUSDT(15))}\n' \
             f'------------------------------------------------\n\n' \
            f'USDT к LKR                    {round(course_LKR)}\n' \
            f'USDT к LKR - 1%           {round(get_percent(course_LKR, 1))}\n' \
-           f'RUB к USDT                   {round(course_RUB, 2)}'
+           f'RUB к USDT                   {round(course_RUB, 2)}\n' \
+           f'RUB к LKR                      {round(curency, 2)}'
     return text
 
 
