@@ -11,6 +11,7 @@ order_admin = InlineKeyboardButton("Сделки", callback_data="orders_admin")
 new_agent = InlineKeyboardButton("Добавить нового агента", callback_data="new_agent")
 open_orders = InlineKeyboardButton("Посмотреть открытые сделки", callback_data="open_orders")
 all_orders = InlineKeyboardButton("Посмотреть закрытые сделки", callback_data="all_orders")
+calkulator = InlineKeyboardButton("Калькулятор", callback_data="calkulator")
 
 agents = InlineKeyboardButton("Агенты", callback_data="agents")
 

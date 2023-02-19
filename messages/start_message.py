@@ -52,7 +52,8 @@ def get_text_admin():
            f'USDT к LKR                    {round(course_LKR)}\n' \
            f'USDT к LKR - 1%           {round(get_percent(course_LKR, 1))}\n' \
            f'RUB к USDT                   {round(course_RUB, 2)}\n' \
-           f'RUB к LKR                      {round(curency, 2)}'
+           f'RUB к LKR                      {round(curency, 2)}\n' \
+           f'RUB к LKR - 1%              {round(get_percent(course_LKR, 1)/course_RUB, 2)}'
     return text
 
 
