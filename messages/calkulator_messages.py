@@ -17,7 +17,7 @@ def get_curensy_info(count):
     cost_usdt = round(count/get_percent(course_LKR, 1), 2)
     course_minus_persent = round(get_percent(course_LKR, 1) / course_RUB, 2)
     curency = course_LKR / course_RUB
-    return f'Сумма LKR {count}\nСтоимость USD: {cost_usdt}\nКурс -1%: {course_minus_persent}\n\n' \
+    return f'Сумма LKR {count}\nСтоимость USDT: {cost_usdt}\nКурс -1%: {course_minus_persent}\n\n' \
            f'8%      {get_percent(curency, 8)}      {round(count / get_percent(curency, 8), -2)} rub\n' \
            f'profit USDT: {round((int(round(count / get_percent(curency, 8), -2))/course_RUB) - cost_usdt, 2)}\n\n' \
            f'7%      {get_percent(curency, 7)}      {round(count / get_percent(curency, 7), -2)} rub\n' \
