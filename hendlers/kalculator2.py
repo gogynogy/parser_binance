@@ -3,6 +3,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import InlineKeyboardMarkup
 
 import buttons as but
+from config.huins import huins
 from loader import bot
 from loader import dp
 from SQLBD import SQL
@@ -16,6 +17,10 @@ SQL = SQL()
 async def only_numbers(message: types.Message):
     if message.chat.id in agents:
         num = int(message.text)
+        if message.text in huins:
+            await message.answer(text=huins[message.text],
+                                 reply_markup=InlineKeyboardMarkup(row_width=1).add(but.menu))
+            return
         text = get_curensy_info(num)
         await message.answer(text=text,
                              reply_markup=InlineKeyboardMarkup(row_width=1).add(but.menu))
