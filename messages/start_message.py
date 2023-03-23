@@ -51,11 +51,51 @@ def get_text_admin():
            f'------------------------------------------------\n\n' \
            f'USDT к LKR                    {round(course_LKR)}\n' \
            f'USDT к LKR - 1%           {round(get_percent(course_LKR, 1))}\n' \
-           f'USDT к LKR - 3%           {round(get_percent(course_LKR, 3))}\n' \
+           f'USDT к LKR - 3%           {round(get_percent(course_LKR, 3), 1)}\n' \
            f'RUB к USDT                   {round(course_RUB, 2)}\n' \
            f'RUB к LKR                      {round(curency, 2)}\n' \
            f'RUB к LKR - 1%              {round(get_percent(course_LKR, 1)/course_RUB, 2)}\n' \
            f'RUB к LKR - 3%              {round(get_percent(course_LKR, 3)/course_RUB, 3)}'
+    return text
+
+def get_text_admin_viet():
+    bank_RUS = ['TinkoffNew']
+    bank_SRI = ['BANK']
+    VND_USDT = CrossratesGetter('VND', 'USDT', "sell", bank_SRI)
+    RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
+    course_VND = int(mean(VND_USDT.give_list()))
+    course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
+    curency = course_VND / course_RUB
+    probel = '         |       '
+    text = f'Актуальный курс RUB/VND на <b>{give_time()}</b>\n\n' \
+           f'Сумма VND         Курс            Сумма RUB\n' \
+           f'------------------------------------------------\n' \
+           f'1 000 000 {probel} {get_percent(curency, 8)}{probel}{int(round(1000000 / get_percent(curency, 8), -2))}\n' \
+           f'------------------------------------------------\n' \
+           f'4 000 000{probel}{get_percent(curency, 7)}{probel}{int(round(4000000 / get_percent(curency, 7), -2))}\n' \
+           f'------------------------------------------------\n' \
+           f'8 000 000{probel}{get_percent(curency, 6)}{probel}{int(round(8000000 / get_percent(curency, 6), -2))}\n' \
+           f'------------------------------------------------\n' \
+           f'10 000 000{probel}{get_percent(curency, 5)}{probel}{int(round(10000000 / get_percent(curency, 5), -2))}\n' \
+           f'------------------------------------------------\n\n' \
+           f'Актуальный курс USDT/VND на <b>{give_time()}</b>\n\n' \
+           f'Сумма VND         Курс            Сумма USDT\n' \
+           f'------------------------------------------------\n' \
+           f'1 000 000 {probel} {courseUSDT(14)}{probel}{int(1000000 / courseUSDT(14))}\n' \
+           f'------------------------------------------------\n' \
+           f'4 000 000{probel}{courseUSDT(13)}{probel}{int(4000000 / courseUSDT(13))}\n' \
+           f'------------------------------------------------\n' \
+           f'8 000 000{probel}{courseUSDT(12)}{probel}{int(8000000 / courseUSDT(12))}\n' \
+           f'------------------------------------------------\n' \
+           f'10 000 000{probel}{courseUSDT(10)}{probel}{int(10000000 / courseUSDT(10))}\n' \
+           f'------------------------------------------------\n\n' \
+           f'USDT к VND                    {round(course_VND)}\n' \
+           f'USDT к VND - 1%           {round(get_percent(course_VND, 1))}\n' \
+           f'USDT к VND - 3%           {round(get_percent(course_VND, 3), 1)}\n' \
+           f'RUB к USDT                   {round(course_RUB, 2)}\n' \
+           f'RUB к VND                      {round(curency, 2)}\n' \
+           f'RUB к VND - 1%              {round(get_percent(course_VND, 1)/course_RUB, 2)}\n' \
+           f'RUB к VND - 3%              {round(get_percent(course_VND, 3)/course_RUB, 3)}'
     return text
 
 

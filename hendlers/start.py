@@ -5,7 +5,7 @@ import buttons as but
 from users import agents
 from loader import bot
 from loader import dp
-from messages.start_message import get_start_text, get_info_text, get_text_admin
+from messages.start_message import get_start_text, get_info_text, get_text_admin, get_text_admin_viet
 from SQLBD import SQL
 SQL = SQL()
 
@@ -16,7 +16,7 @@ async def begin(message: types.Message):
     if message.chat.id in agents:
         text = get_text_admin()
         keyboard = InlineKeyboardMarkup(row_width=1).\
-            add(but.refresh, but.send_message, but.activiti_check, but.order_admin)
+            add(but.refresh, but.send_message, but.vietnam_currency, but.activiti_check, but.order_admin)
     else:
         text = get_start_text()
         keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh).add(but.order)
@@ -32,7 +32,7 @@ async def start_sclad_again(call: types.callback_query):
     if call.message.chat.id in agents:
         text = get_text_admin()
         keyboard = InlineKeyboardMarkup(row_width=1).\
-            add(but.refresh, but.send_message, but.activiti_check, but.order_admin)
+            add(but.refresh, but.send_message, but.vietnam_currency, but.activiti_check, but.order_admin)
     else:
         text = get_start_text()
         keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh).add(but.order)
@@ -55,6 +55,18 @@ async def start_sclad(call: types.callback_query):
                                     parse_mode='HTML',
                                     reply_markup=keyboard)
 
+
+@dp.callback_query_handler(lambda c: c.data == "vietnam_currency")
+async def start_sclad(call: types.callback_query):
+    if call.message.chat.id in agents:
+        text = get_text_admin_viet()
+        keyboard = InlineKeyboardMarkup(row_width=1).\
+            add(but.refresh, but.send_message, but.activiti_check, but.order_admin)
+        await bot.edit_message_text(text=text,
+                                    chat_id=call.message.chat.id,
+                                    message_id=call.message.message_id,
+                                    parse_mode='HTML',
+                                    reply_markup=keyboard)
 
 @dp.message_handler(commands="info")  # /start command processing
 async def info(message: types.Message):

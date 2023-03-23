@@ -6,6 +6,7 @@ refresh = InlineKeyboardButton("Обновить", callback_data="Refresh")
 menu = InlineKeyboardButton("Назад", callback_data="Refresh")
 activiti_check = InlineKeyboardButton("Посмотреть активность", callback_data="check_activiti")
 send_message = InlineKeyboardButton("Текст для отправки", callback_data="send_message")
+vietnam_currency = InlineKeyboardButton("Курсы по вьетнаму", callback_data="vietnam_currency")
 
 order_admin = InlineKeyboardButton("Сделки", callback_data="orders_admin")
 new_agent = InlineKeyboardButton("Добавить нового агента", callback_data="new_agent")
