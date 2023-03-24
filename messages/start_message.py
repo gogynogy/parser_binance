@@ -11,12 +11,17 @@ def give_time():
     return timenow
 
 
-def courseUSDT(minu):
+def course_LKR_USDT(minu):
     bank_SRI = ['BANK']
     LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
     course_LKR = int(mean(LKR_USDT.give_list()))
     return course_LKR - minu
 
+def course_VND_USDT(minu):
+    bank_SRI = ['BANK']
+    LKR_USDT = CrossratesGetter('VND', 'USDT', "sell", bank_SRI)
+    course_LKR = int(mean(LKR_USDT.give_list()))
+    return course_LKR - minu
 
 def get_text_admin():
     bank_RUS = ['TinkoffNew']
@@ -41,13 +46,13 @@ def get_text_admin():
            f'Актуальный курс USDT/LKR на <b>{give_time()}</b>\n\n' \
            f'Сумма LKR         Курс            Сумма USDT\n' \
            f'------------------------------------------------\n' \
-           f'50 000 {probel} {courseUSDT(14)}{probel}{int(50000 / courseUSDT(14))}\n' \
+           f'50 000 {probel} {course_LKR_USDT(14)}{probel}{int(50000 / course_LKR_USDT(14))}\n' \
            f'------------------------------------------------\n' \
-           f'100 000{probel}{courseUSDT(13)}{probel}{int(100000 / courseUSDT(13))}\n' \
+           f'100 000{probel}{course_LKR_USDT(13)}{probel}{int(100000 / course_LKR_USDT(13))}\n' \
            f'------------------------------------------------\n' \
-           f'200 000{probel}{courseUSDT(12)}{probel}{int(200000 / courseUSDT(12))}\n' \
+           f'200 000{probel}{course_LKR_USDT(12)}{probel}{int(200000 / course_LKR_USDT(12))}\n' \
            f'------------------------------------------------\n' \
-           f'400 000{probel}{courseUSDT(10)}{probel}{int(400000 / courseUSDT(10))}\n' \
+           f'400 000{probel}{course_LKR_USDT(10)}{probel}{int(400000 / course_LKR_USDT(10))}\n' \
            f'------------------------------------------------\n\n' \
            f'USDT к LKR                    {round(course_LKR)}\n' \
            f'USDT к LKR - 1%           {round(get_percent(course_LKR, 1))}\n' \
@@ -81,13 +86,13 @@ def get_text_admin_viet():
            f'Актуальный курс USDT/VND на <b>{give_time()}</b>\n\n' \
            f'Сумма VND         Курс            Сумма USDT\n' \
            f'------------------------------------------------\n' \
-           f'1 000 000 {probel} {courseUSDT(14)}{probel}{int(1000000 / courseUSDT(14))}\n' \
+           f'1 000 000 {probel} {course_VND_USDT(14)}{probel}{int(1000000 / course_VND_USDT(14))}\n' \
            f'------------------------------------------------\n' \
-           f'4 000 000{probel}{courseUSDT(13)}{probel}{int(4000000 / courseUSDT(13))}\n' \
+           f'4 000 000{probel}{course_VND_USDT(13)}{probel}{int(4000000 / course_VND_USDT(13))}\n' \
            f'------------------------------------------------\n' \
-           f'8 000 000{probel}{courseUSDT(12)}{probel}{int(8000000 / courseUSDT(12))}\n' \
+           f'8 000 000{probel}{course_VND_USDT(12)}{probel}{int(8000000 / course_VND_USDT(12))}\n' \
            f'------------------------------------------------\n' \
-           f'10 000 000{probel}{courseUSDT(10)}{probel}{int(10000000 / courseUSDT(10))}\n' \
+           f'10 000 000{probel}{course_VND_USDT(10)}{probel}{int(10000000 / course_VND_USDT(10))}\n' \
            f'------------------------------------------------\n\n' \
            f'USDT к VND                    {round(course_VND)}\n' \
            f'USDT к VND - 1%           {round(get_percent(course_VND, 1))}\n' \
