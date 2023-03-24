@@ -86,13 +86,13 @@ def get_text_admin_viet():
            f'Актуальный курс USDT/VND на <b>{give_time()}</b>\n\n' \
            f'Сумма VND         Курс            Сумма USDT\n' \
            f'------------------------------------------------\n' \
-           f'1 000 000 {probel} {course_VND_USDT(14)}{probel}{int(1000000 / course_VND_USDT(14))}\n' \
+           f'1 000 000 {probel} {get_percent(course_VND, 8)}{probel}{int(1000000 / get_percent(course_VND, 8))}\n' \
            f'------------------------------------------------\n' \
-           f'4 000 000{probel}{course_VND_USDT(13)}{probel}{int(4000000 / course_VND_USDT(13))}\n' \
+           f'4 000 000{probel}{get_percent(course_VND, 7)}{probel}{int(4000000 / get_percent(course_VND, 7))}\n' \
            f'------------------------------------------------\n' \
-           f'8 000 000{probel}{course_VND_USDT(12)}{probel}{int(8000000 / course_VND_USDT(12))}\n' \
+           f'8 000 000{probel}{get_percent(course_VND, 6)}{probel}{int(8000000 / get_percent(course_VND, 6))}\n' \
            f'------------------------------------------------\n' \
-           f'10 000 000{probel}{course_VND_USDT(10)}{probel}{int(10000000 / course_VND_USDT(10))}\n' \
+           f'10 000 000{probel}{get_percent(course_VND, 5)}{probel}{int(10000000 / get_percent(course_VND, 5))}\n' \
            f'------------------------------------------------\n\n' \
            f'USDT к VND                    {round(course_VND)}\n' \
            f'USDT к VND - 1%           {round(get_percent(course_VND, 1))}\n' \
