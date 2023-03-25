@@ -3,6 +3,8 @@ id_egor = 5899172512
 om = 5792083325
 mrAlex = 243626777
 sokol = 211708769
+vi = 461549616
+pitopipito = 5560471144
 
 
 admins = [
@@ -15,7 +17,9 @@ agents = [
     id_egor,
     om,
     mrAlex,
-    sokol
+    sokol,
+    vi,
+    pitopipito
 ]
 
 veli = [
