@@ -1,4 +1,5 @@
 geo = 498332094
+geo2 = 5502589960
 id_egor = 5899172512
 om = 5792083325
 mrAlex = 243626777
@@ -9,11 +10,13 @@ pitopipito = 5560471144
 
 admins = [
     geo,
+    geo2,
     id_egor
 ]
 
 agents = [
     geo,
+    geo2,
     id_egor,
     om,
     mrAlex,
