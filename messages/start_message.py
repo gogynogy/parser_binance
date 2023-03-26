@@ -44,20 +44,21 @@ def get_text_admin():
            f'400 000{probel}{get_percent(curency, 5)}{probel}{int(round(400000 / get_percent(curency, 5), -2))}\n' \
            f'------------------------------------------------\n\n' \
            f'Актуальный курс USDT/LKR на <b>{give_time()}</b>\n\n' \
-           f'Сумма LKR         Курс            Сумма USDT\n' \
+           f'Сумма VND         Курс            Сумма USDT\n' \
            f'------------------------------------------------\n' \
-           f'50 000 {probel} {course_LKR_USDT(14)}{probel}{int(50000 / course_LKR_USDT(14))}\n' \
+           f'50 000 {probel} {round(get_percent(course_LKR, 8))}{probel}{int(50000 / get_percent(course_LKR, 8))}\n' \
            f'------------------------------------------------\n' \
-           f'100 000{probel}{course_LKR_USDT(13)}{probel}{int(100000 / course_LKR_USDT(13))}\n' \
+           f'100 000{probel}{round(get_percent(course_LKR, 7))}{probel}{int(100000 / get_percent(course_LKR, 7))}\n' \
            f'------------------------------------------------\n' \
-           f'200 000{probel}{course_LKR_USDT(12)}{probel}{int(200000 / course_LKR_USDT(12))}\n' \
+           f'200 000{probel}{round(get_percent(course_LKR, 6))}{probel}{int(200000 / get_percent(course_LKR, 6))}\n' \
            f'------------------------------------------------\n' \
-           f'400 000{probel}{course_LKR_USDT(10)}{probel}{int(400000 / course_LKR_USDT(10))}\n' \
+           f'400 000{probel}{round(get_percent(course_LKR, 5))}{probel}{int(400000 / get_percent(course_LKR, 5))}\n' \
            f'------------------------------------------------\n\n' \
            f'USDT к LKR                    {round(course_LKR)}\n' \
            f'USDT к LKR - 1%           {round(get_percent(course_LKR, 1))}\n' \
            f'USDT к LKR - 3%           {round(get_percent(course_LKR, 3), 1)}\n' \
-           f'RUB к USDT                   {round(course_RUB, 2)}\n' \
+           f'USDT к LKR - 15            {round(course_LKR) - 15}\n\n' \
+           f'RUB к USDT                   {round(course_RUB, 2)}\n\n' \
            f'RUB к LKR                      {round(curency, 2)}\n' \
            f'RUB к LKR - 1%              {round(get_percent(course_LKR, 1)/course_RUB, 2)}\n' \
            f'RUB к LKR - 3%              {round(get_percent(course_LKR, 3)/course_RUB, 3)}'
