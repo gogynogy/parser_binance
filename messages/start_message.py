@@ -33,27 +33,11 @@ def get_text_admin():
     curency = course_LKR / course_RUB
     probel = '         |       '
     text = f'Актуальный курс RUB/LKR на <b>{give_time()}</b>\n\n' \
-           f'Сумма LKR         Курс            Сумма RUB\n' \
-           f'------------------------------------------------\n' \
-           f'50 000 {probel} {get_percent(curency, 8)}{probel}{int(round(50000 / get_percent(curency, 8), -2))}\n' \
-           f'------------------------------------------------\n' \
-           f'100 000{probel}{get_percent(curency, 7)}{probel}{int(round(100000 / get_percent(curency, 7), -2))}\n' \
-           f'------------------------------------------------\n' \
-           f'200 000{probel}{get_percent(curency, 6)}{probel}{int(round(200000 / get_percent(curency, 6), -2))}\n' \
-           f'------------------------------------------------\n' \
-           f'400 000{probel}{get_percent(curency, 5)}{probel}{int(round(400000 / get_percent(curency, 5), -2))}\n' \
-           f'------------------------------------------------\n\n' \
-           f'Актуальный курс USDT/LKR на <b>{give_time()}</b>\n\n' \
-           f'Сумма VND         Курс            Сумма USDT\n' \
-           f'------------------------------------------------\n' \
-           f'50 000 {probel} {round(get_percent(course_LKR, 8))}{probel}{int(50000 / get_percent(course_LKR, 8))}\n' \
-           f'------------------------------------------------\n' \
-           f'100 000{probel}{round(get_percent(course_LKR, 7))}{probel}{int(100000 / get_percent(course_LKR, 7))}\n' \
-           f'------------------------------------------------\n' \
-           f'200 000{probel}{round(get_percent(course_LKR, 6))}{probel}{int(200000 / get_percent(course_LKR, 6))}\n' \
-           f'------------------------------------------------\n' \
-           f'400 000{probel}{round(get_percent(course_LKR, 5))}{probel}{int(400000 / get_percent(course_LKR, 5))}\n' \
-           f'------------------------------------------------\n\n' \
+           f'Сумма LKR         Курс            Сумма RUB\n\n' \
+           f'50 000 {probel} {get_percent(curency, 8)}{probel}{int(round(50000 / get_percent(curency, 8), -2))}\n\n' \
+           f'100 000{probel}{get_percent(curency, 7)}{probel}{int(round(100000 / get_percent(curency, 7), -2))}\n\n' \
+           f'200 000{probel}{get_percent(curency, 6)}{probel}{int(round(200000 / get_percent(curency, 6), -2))}\n\n' \
+           f'400 000{probel}{get_percent(curency, 5)}{probel}{int(round(400000 / get_percent(curency, 5), -2))}\n\n' \
            f'USDT к LKR                    {round(course_LKR)}\n' \
            f'USDT к LKR - 1%           {round(get_percent(course_LKR, 1))}\n' \
            f'USDT к LKR - 3%           {round(get_percent(course_LKR, 3), 1)}\n' \
@@ -84,17 +68,6 @@ def get_text_admin_viet():
            f'------------------------------------------------\n' \
            f'10 000 000{probel}{get_percent(curency, 5)}{probel}{int(round(10000000 / get_percent(curency, 5), -2))}\n' \
            f'------------------------------------------------\n\n' \
-           f'Актуальный курс USDT/VND на <b>{give_time()}</b>\n\n' \
-           f'Сумма VND         Курс            Сумма USDT\n' \
-           f'------------------------------------------------\n' \
-           f'1 000 000 {probel} {get_percent(course_VND, 8)}{probel}{int(1000000 / get_percent(course_VND, 8))}\n' \
-           f'------------------------------------------------\n' \
-           f'4 000 000{probel}{get_percent(course_VND, 7)}{probel}{int(4000000 / get_percent(course_VND, 7))}\n' \
-           f'------------------------------------------------\n' \
-           f'8 000 000{probel}{get_percent(course_VND, 6)}{probel}{int(8000000 / get_percent(course_VND, 6))}\n' \
-           f'------------------------------------------------\n' \
-           f'10 000 000{probel}{get_percent(course_VND, 5)}{probel}{int(10000000 / get_percent(course_VND, 5))}\n' \
-           f'------------------------------------------------\n\n' \
            f'USDT к VND                    {round(course_VND)}\n' \
            f'USDT к VND - 1%           {round(get_percent(course_VND, 1))}\n' \
            f'USDT к VND - 3%           {round(get_percent(course_VND, 3), 1)}\n' \
@@ -114,44 +87,47 @@ def get_start_text():
     course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
     curency = course_LKR / course_RUB
     probel = '         |       '
-    text2 = f'Расчет курсов обмена рублей на юге Шри Ланки. \nДата актуализации: <b>{give_time()}</b>\n\n' \
-            f'<b>Мирисса / Велигама / Ахангама / Матара / Когала</b>\n' \
-            f'Сумма LKR         Курс            Сумма RUB\n' \
-            f'------------------------------------------------\n' \
-            f'50 000  {probel}{get_percent(curency, 8)}{probel}{int(round(50000 / get_percent(curency, 8), -2))}\n' \
-            f'------------------------------------------------\n' \
-            f'100 000{probel}{get_percent(curency, 7)}{probel}{int(round(100000 / get_percent(curency, 7), -2))}\n' \
-            f'------------------------------------------------\n' \
-            f'200 000{probel}{get_percent(curency, 6)}{probel}{int(round(200000 / get_percent(curency, 6), -2))}\n' \
-            f'------------------------------------------------\n' \
-            f'400 000{probel}{get_percent(curency, 5)}{probel}{int(round(400000 / get_percent(curency, 5), -2))}\n' \
-            f'------------------------------------------------\n' \
-            f'<b>В Мириссе</b>, если сами доедите до точки выдачи, курс будет минимальный {get_percent(curency, 6)} ' \
-            f'на любую сумму, дальше по сеткe.\n\n' \
-            f'<b>В Коломбо</b> (минимальная сумма 60 000 руб, по предварительной договоренности)\n' \
-            f'Сумма LKR         Курс            Сумма RUB\n' \
-            f'------------------------------------------------\n' \
-            f'300 000  {probel}{get_percent(curency, 8)}{probel}{int(round(300000 / get_percent(curency, 8), -2))}\n' \
-            f'------------------------------------------------\n' \
-            f'600 000  {probel}{get_percent(curency, 7)}{probel}{int(round(600000 / get_percent(curency, 7), -2))}\n' \
-            f'------------------------------------------------\n' \
-            f'800 000  {probel}{get_percent(curency, 6)}{probel}{int(round(800000 / get_percent(curency, 6), -2))}\n' \
-            f'------------------------------------------------\n' \
-            f'1 000 000{probel}{get_percent(curency, 5)}{probel}{int(round(1000000 / get_percent(curency, 5), -2))}\n' \
-            f'------------------------------------------------\n\n' \
-            f'<b>В Канди и Элле</b> доступен обмен по фиксированному курсу {get_percent(curency, 6)}, ' \
-            f'сумма от 15 000 рублей\n' \
-            f'Сумма LKR         Курс            Сумма RUB\n' \
-            f'------------------------------------------------\n' \
-            f'80 000  {probel}{get_percent(curency, 6)}{probel}{int(round(80000 / get_percent(curency, 6), -2))}\n' \
-            f'------------------------------------------------\n' \
-            f'100 000{probel}{get_percent(curency, 6)}{probel}{int(round(100000 / get_percent(curency, 6), -2))}\n' \
-            f'------------------------------------------------\n' \
-            f'150 000{probel}{get_percent(curency, 6)}{probel}{int(round(150000 / get_percent(curency, 6), -2))}\n' \
-            f'------------------------------------------------\n' \
-            f'200 000{probel}{get_percent(curency, 6)}{probel}{int(round(200000 / get_percent(curency, 6), -2))}\n' \
-            f'------------------------------------------------\n\n'
-    return text2
+    text = f'Расчет курсов обмена рублей на юге Шри Ланки. \nДата актуализации: <b>{give_time()}</b>\n\n' \
+        f'<b>В Канди и Аругамбей</b> доступен самовывоз в центре по фикс курсу на сумму от 80 000 рупий\n' \
+        f'Сумма LKR         Курс            Сумма RUB\n' \
+        f'---------------------------------------\n' \
+        f'80 000 {probel}{get_percent(curency, 6)}{probel}{int(round(80000 / get_percent(curency, 6), -2))}\n' \
+        f'---------------------------------------\n' \
+        f'200 000{probel}{get_percent(curency, 6)}{probel}{int(round(200000 / get_percent(curency, 6), -2))}\n\n' \
+        f'<b>Мирисса / Велигама / Ахангама / Матара / Когала / Унаватуна / Галле</b>\n' \
+        f'Сумма LKR         Курс            Сумма RUB\n' \
+        f'---------------------------------------\n' \
+        f'50 000 {probel}{get_percent(curency, 8)}{probel}{int(round(50000 / get_percent(curency, 8), -2))}\n' \
+        f'---------------------------------------\n' \
+        f'100 000{probel}{get_percent(curency, 7)}{probel}{int(round(100000 / get_percent(curency, 7), -2))}\n' \
+        f'---------------------------------------\n' \
+        f'200 000{probel}{get_percent(curency, 6)}{probel}{int(round(200000 / get_percent(curency, 6), -2))}\n' \
+        f'---------------------------------------\n' \
+        f'400 000{probel}{get_percent(curency, 5)}{probel}{int(round(400000 / get_percent(curency, 5), -2))}\n' \
+        f'---------------------------------------\n' \
+        f'<b>В Мириссе</b>, если сами доедите до точки выдачи, курс будет минимальный {get_percent(curency, 6)} ' \
+        f'на любую сумму, дальше по сеткe.\n\n' \
+        f'<b>В Коломбо</b> (Доставка в центр города от 200 000 рупий)\n' \
+        f'Сумма LKR         Курс            Сумма RUB\n' \
+        f'---------------------------------------\n' \
+        f'200 000{probel}{get_percent(curency, 7)}{probel}{int(round(200000 / get_percent(curency, 7), -2))}\n' \
+        f'---------------------------------------\n' \
+        f'100 000{probel}{get_percent(curency, 6)}{probel}{int(round(100000 / get_percent(curency, 6), -2))}\n' \
+        f'---------------------------------------\n\n' \
+        f'<b>В Коломбо</b> (Самовывоз в центре города любой суммы)\n' \
+        f'Сумма LKR         Курс            Сумма RUB\n' \
+        f'---------------------------------------\n' \
+        f'100 000  {probel}{get_percent(curency, 6)}{probel}{int(round(100000 / get_percent(curency, 6), -2))}\n\n' \
+        f'<b>Аэропорт Негомбо</b> (Доставка от 300 000 рупий)\n' \
+        f'Сумма LKR         Курс            Сумма RUB\n' \
+        f'---------------------------------------\n' \
+        f'300 000{probel}{get_percent(curency, 8)}{probel}{int(round(300000 / get_percent(curency, 8), -2))}\n' \
+        f'---------------------------------------\n' \
+        f'400 000{probel}{get_percent(curency, 7)}{probel}{int(round(400000 / get_percent(curency, 7), -2))}\n' \
+        f'---------------------------------------\n' \
+        f'500 000{probel}{get_percent(curency, 6)}{probel}{int(round(500000 / get_percent(curency, 6), -2))}\n' \
+        f'---------------------------------------\n'
+    return text
 
 
 get_info_text = f"Привет, данный бот написан на чистом энтузиазме и уже насчитиывает в себе {countSTR()} " \
