@@ -110,9 +110,9 @@ def get_start_text():
         f'<b>В Коломбо</b> (Доставка в центр города от 200 000 рупий)\n' \
         f'Сумма LKR         Курс            Сумма RUB\n' \
         f'---------------------------------------\n' \
-        f'200 000{probel}{get_percent(curency, 7)}{probel}{int(round(200000 / get_percent(curency, 7), -2))}\n' \
+        f'100 000{probel}{get_percent(curency, 7)}{probel}{int(round(100000 / get_percent(curency, 7), -2))}\n' \
         f'---------------------------------------\n' \
-        f'100 000{probel}{get_percent(curency, 6)}{probel}{int(round(100000 / get_percent(curency, 6), -2))}\n' \
+        f'200 000{probel}{get_percent(curency, 6)}{probel}{int(round(200000 / get_percent(curency, 6), -2))}\n' \
         f'---------------------------------------\n\n' \
         f'<b>В Коломбо</b> (Самовывоз в центре города любой суммы)\n' \
         f'Сумма LKR         Курс            Сумма RUB\n' \
