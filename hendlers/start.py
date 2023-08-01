@@ -2,7 +2,8 @@ from aiogram import types
 from aiogram.types import InlineKeyboardMarkup
 
 import buttons as but
-from users import agents
+from hendlers.exchangePoint import exchange
+from users import agents, admins
 from loader import bot
 from loader import dp
 from messages.start_message import get_start_text, get_info_text, get_text_admin, get_text_admin_viet
@@ -13,17 +14,22 @@ SQL = SQL()
 @dp.message_handler(commands="start")  # /start command processing
 async def begin(message: types.Message):
     SQL.CheckAccount(message.chat.id, message.chat.username)
-    if message.chat.id in agents:
-        text = get_text_admin()
-        keyboard = InlineKeyboardMarkup(row_width=1).\
-            add(but.refresh, but.send_message, but.vietnam_currency, but.activiti_check, but.order_admin)
+    if message.get_args():
+        agentID = SQL.CheckAgent(message.get_args())[0]
+        await exchange(message, agentID)
     else:
-        text = get_start_text()
-        keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh).add(but.order)
-    await bot.send_message(chat_id=message.chat.id,
-                           text=text,
-                           parse_mode='HTML',
-                           reply_markup=keyboard)
+        if message.chat.id in agents:
+            text = get_text_admin()
+            keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh, but.send_message)
+            if message.chat.id in admins:
+                keyboard.add(but.agents, but.activiti_check, but.order_admin, but.new_agent)
+        else:
+            text = get_start_text()
+            keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh).add(but.order)
+        await bot.send_message(chat_id=message.chat.id,
+                               text=text,
+                               parse_mode='HTML',
+                               reply_markup=keyboard)
 
 
 @dp.callback_query_handler(lambda c: c.data == "Refresh")
@@ -33,6 +39,8 @@ async def start_sclad_again(call: types.callback_query):
         text = get_text_admin()
         keyboard = InlineKeyboardMarkup(row_width=1).\
             add(but.refresh, but.send_message, but.vietnam_currency, but.activiti_check, but.order_admin)
+        if call.message.chat.id in admins:
+            keyboard.add(but.agents)
     else:
         text = get_start_text()
         keyboard = InlineKeyboardMarkup(row_width=1).add(but.refresh).add(but.order)

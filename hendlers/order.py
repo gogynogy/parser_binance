@@ -35,7 +35,7 @@ async def finish_order(call: types.callback_query, callback_data: dict):
     location = callback_data.get('where')
     how_much = callback_data.get('how_much')
     count_num = SQL.make_order(call.message.chat.id, call.message.chat.username, location, how_much)
-    if call.message.chat.id == None:
+    if not call.message.chat.username:
         await bot.edit_message_text(text=f'Твой ник в телеграмме скрыт и написать тебе нельзя('
                                          f'По обмену пиши: @Real_Egor, @Bombambaley',
                                     chat_id=call.message.chat.id,

@@ -1,6 +1,11 @@
 from aiogram import types
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton
 from aiogram.utils.callback_data import CallbackData
+from SQLBD import SQL
+
+SQL = SQL()
+
+from messages.order_messages import give_currency_to_LKR, format_number_with_spaces
 
 refresh = InlineKeyboardButton("Обновить", callback_data="Refresh")
 menu = InlineKeyboardButton("Назад", callback_data="Refresh")
@@ -8,11 +13,14 @@ activiti_check = InlineKeyboardButton("Посмотреть активность
 send_message = InlineKeyboardButton("Текст для отправки", callback_data="send_message")
 vietnam_currency = InlineKeyboardButton("Курсы по вьетнаму", callback_data="vietnam_currency")
 
+
 order_admin = InlineKeyboardButton("Сделки", callback_data="orders_admin")
 new_agent = InlineKeyboardButton("Добавить нового агента", callback_data="new_agent")
 open_orders = InlineKeyboardButton("Посмотреть открытые сделки", callback_data="open_orders")
 all_orders = InlineKeyboardButton("Посмотреть закрытые сделки", callback_data="all_orders")
 calkulator = InlineKeyboardButton("Калькулятор", callback_data="calkulator")
+
+rus_help = InlineKeyboardButton("Нужна русскоязычная помощь", callback_data="rus_help")
 
 agents = InlineKeyboardButton("Агенты", callback_data="agents")
 
@@ -68,3 +76,37 @@ def write_customer(message: types.Message):
     button_url = f'tg://openmessage?user_id={message.chat.id}'
     return InlineKeyboardButton(text=f'написать {message.chat.first_name}',
                                 url=button_url)
+
+local_order = CallbackData('b', 'agentID', 'currency')
+def choice_currency_local(agentID):
+    buttons = InlineKeyboardMarkup(row_width=2)
+    rub = InlineKeyboardButton(text=f'Поменять рубли', callback_data=local_order.new(agentID=agentID, currency='rub'))
+    usdt = InlineKeyboardButton(text=f'Поменять USDT', callback_data=local_order.new(agentID=agentID, currency='usdt'))
+    buttonList = buttons.add(rub, usdt)
+    return buttonList
+
+choise_count_money = CallbackData('c', 'agentID', 'currency', 'count')
+def choice_count_money_local(agentID, currency):
+    agent_percent = SQL.CheckAgent(agentID)[4]
+    rate = give_currency_to_LKR(currency, agent_percent)
+    buttons = InlineKeyboardMarkup(row_width=1)
+    prices = [100000, 200000]
+    if currency == 'rub':
+        button_list = [InlineKeyboardButton(text=f'{format_number_with_spaces(price / rate)} @ {currency} = {price} LKR',
+                                        callback_data=choise_count_money.new(agentID=agentID, currency=currency, count=price))
+                                        for price in prices]
+    else:
+        button_list = [InlineKeyboardButton(text=f'{round(price / rate, 2)} @ {currency} = {price} LKR',
+                                        callback_data=choise_count_money.new(agentID=agentID, currency=currency, count=price))
+                                        for price in prices]
+    return buttons.add(*button_list)
+
+back_to_main_menu = CallbackData('d', 'agentID')
+def mainmenuButton(agentID):
+    button = InlineKeyboardButton(text='Назад', callback_data=back_to_main_menu.new(agentID=agentID))
+    return button
+
+enother_money = CallbackData('d', 'agentID', 'currency')
+def enother_money_button(agentID, currency):
+    button = InlineKeyboardButton(text='Другая сумма', callback_data=enother_money.new(agentID=agentID, currency=currency))
+    return button

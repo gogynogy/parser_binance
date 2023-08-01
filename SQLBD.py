@@ -31,12 +31,15 @@ class SQL:
             Time TEXT,
             Done TEXT NOT NULL DEFAULT NO
             )""")
-        # self.cursor.execute('''CREATE TABLE IF NOT EXISTS `Agents` (
-        #     Id INTEGER PRIMARY KEY AUTOINCREMENT,
-        #     userid TEXT,
-        #     TelegramNikName TEXT,
-        #     Balance INT NOT NULL DEFAULT 0,
-        #     )''')
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS `Agents` (
+            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+            telegramID TEXT,
+            TelegramNikName TEXT,
+            Balance INT NOT NULL DEFAULT 0,
+            Percent INT,
+            BinancePayID TEXT,
+            TRC20 TEXT
+            )''')
         self.conn.commit()
 
 
@@ -48,14 +51,43 @@ class SQL:
                 self.cursor.execute(f"INSERT INTO Users (userid, user_name) VALUES (?, ?)", (id, username))
                 self.cursor.execute(f"INSERT INTO ToDo (TelegramNikName) VALUES (?)", (username, ))
             else:
-                self.cursor.execute('''UPDATE ToDo SET Count = (Count + 1) WHERE TelegramNikName = ?''',
-                                    (username, ))
+                self.cursor.execute('''UPDATE ToDo SET Count = (Count + 1) WHERE TelegramNikName = ?''', (username, ))
         except sqlite3.Error as error:
             print(f"Ошибка при работе с SQLite CheckAccount {error}")
         finally:
             self.conn.commit()
 
+    def CheckAgent(self, telegramNickName):
+        try:
+            self.cursor.execute("SELECT * FROM Agents WHERE TelegramNikName = (?)", (telegramNickName,))
+            agent = self.cursor.fetchone()
+            if not agent:
+                self.cursor.execute("SELECT * FROM Agents WHERE Id = (?)", (telegramNickName,))
+                agent = self.cursor.fetchone()
+            return agent
+        except sqlite3.Error as error:
+            print(f"Ошибка при работе с SQLite CheckAgent {error}")
+        finally:
+            self.conn.commit()
 
+    def AddAgent(self, telegramID, username, percent):
+        try:
+            self.cursor.execute(f"INSERT INTO Agents (telegramID, TelegramNikName, Percent) VALUES (?, ?, ?)",
+                                (telegramID, username, percent))
+        except sqlite3.Error as error:
+            print(f"Ошибка при работе с SQLite AddAgent {error}")
+        finally:
+            self.conn.commit()
+
+    def GiveAgents(self):
+        try:
+            self.cursor.execute("SELECT * FROM Agents")
+            agents = self.cursor.fetchall()
+            return agents
+        except sqlite3.Error as error:
+            print(f"Ошибка при работе с SQLite GiveAgents {error}")
+        finally:
+            self.conn.commit()
     def watch_activity(self):
         try:
             self.cursor.execute("SELECT * FROM ToDo")

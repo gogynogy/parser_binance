@@ -3,6 +3,8 @@ from statistics import mean
 from messages.start_message import give_time
 from p2p_parser import CrossratesGetter, give_rus_course, get_percent
 
+from SQLBD import SQL
+SQL = SQL()
 start_order_message = 'Выбери локацию из списка:'
 
 def order_message(location):
@@ -54,3 +56,61 @@ def order_message(location):
             f'200 000      |       {get_percent(curency, 6)}   |   {int(round(200000 / get_percent(curency, 6), -2))}\n' \
             f'------------------------------------------------\n'
     return text
+
+def exchange_point(agentID):
+    agent_percent = SQL.CheckAgent(agentID)[4]
+    usdt = give_currency_to_LKR('usdt', agent_percent)
+    usdt100k = 100000 / usdt
+    rub = give_currency_to_LKR('rub', agent_percent)
+    rub100k = format_number_with_spaces(100000 / rub)
+    text = f'Привет. Вы попали в одну из точек,\nгде вам могут помочь с обменом валюты.\n' \
+           f'Тут меняют криптовалюту по курсу:\n1 USDT = <b>{usdt}</b> LKR.\nПример: {round(usdt100k, 2)} USDT ' \
+           f'@ {usdt} = 100 000 LKR\n' \
+           f'Так же тут можно поменять рубли на рупии по курсу:\n1 Rub = <b>{rub}</b> LKR\n' \
+           f'Пример: {rub100k} RUB @ {rub} = 100 000 LKR.\n' \
+           f'Так же у нас работает русскоязычная поддержка, обращайтесь.'
+    return text
+
+def second_order_message(currency, agentID):
+    agent_percent = SQL.CheckAgent(agentID)[4]
+    usdt = give_currency_to_LKR('usdt', agent_percent)
+    rub = give_currency_to_LKR('rub', agent_percent)
+    if currency == 'usdt':
+        text = f'Чтобы поменять usdt, Вам нужно определиться с суммой обмена.\nПосле этого, возможно, ' \
+               f'потребуется подождать, пока для вас подготовят наличные рупии\n' \
+               f'(мы не держим тут сейфов с кучей кеша).\n' \
+               f'Реквизиты для перевода вам предоставит русскоязычный помощник.\n' \
+               f'Выберите сумму, которую хотите получить.\n<b>Актуальный курс {usdt}</b>'
+    elif currency == 'rub':
+        text = f'Чтобы поменять рубли, Вам нужно определиться с суммой обмена.\nПосле этого, возможно, ' \
+               f'потребуется подождать, пока для вас подготовят наличные рупии\n' \
+               f'(мы не держим тут сейфов с кучей кеша).\n' \
+               f'Оплату вы будете осуществлять банковским переводом на счет в российском банке.\n' \
+               f'Реквизиты для перевода вам предоставит русскоязычный помощник.\n' \
+               f'Выберите сумму, которую хотите получить.\n<b>Актуальный курс {rub}</b>'
+    return text
+
+
+def format_number_with_spaces(number):
+    number_str = str(int(round(number / 100) * 100))
+    groups = []
+    while number_str:
+        groups.insert(0, number_str[-3:])
+        number_str = number_str[:-3]
+    formatted_number = ' '.join(groups)
+    return formatted_number
+
+def give_currency_to_LKR(monet, percent):
+    bank_SRI = ['BANK']
+    LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
+    course_LKR = mean(LKR_USDT.give_list())
+    if monet == 'rub':
+        bank_RUS = ['TinkoffNew']
+        RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
+        course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
+        curency = course_LKR / course_RUB
+        rub = get_percent(curency, percent)
+        return rub
+    else:
+        usdt = round(get_percent(course_LKR, percent), 2)
+        return usdt
