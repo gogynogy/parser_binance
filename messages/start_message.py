@@ -33,10 +33,8 @@ def get_text_admin():
     probel = '         |       '
     text = f'Актуальный курс RUB/LKR на <b>{give_time()}</b>\n\n' \
            f'Сумма LKR         Курс            Сумма RUB\n\n' \
-           f'50 000 {probel} {get_percent(curency, 8)}{probel}{int(round(50000 / get_percent(curency, 8), -2))}\n\n' \
-           f'100 000{probel}{get_percent(curency, 7)}{probel}{int(round(100000 / get_percent(curency, 7), -2))}\n\n' \
-           f'200 000{probel}{get_percent(curency, 6)}{probel}{int(round(200000 / get_percent(curency, 6), -2))}\n\n' \
-           f'400 000{probel}{get_percent(curency, 5)}{probel}{int(round(400000 / get_percent(curency, 5), -2))}\n\n' \
+           f'50 000 {probel} {get_percent(curency, 6)}{probel}{int(round(50000 / get_percent(curency, 6), -2))}\n\n' \
+           f'200 000{probel}{get_percent(curency, 5)}{probel}{int(round(200000 / get_percent(curency, 5), -2))}\n\n' \
            f'USDT к LKR                    {round(course_LKR)}\n' \
            f'USDT к LKR - 1%           {round(get_percent(course_LKR, 1), 1)}\n' \
            f'USDT к LKR - 2%           {round(get_percent(course_LKR, 2), 1)}\n' \

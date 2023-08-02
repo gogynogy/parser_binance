@@ -11,7 +11,6 @@ class SQL:
         self.cursor = self.conn.cursor()
 
     def checkDB(self):
-        """проверяет наличие базы данных"""
         self.cursor.execute("""CREATE TABLE IF NOT EXISTS `Users` (
             Id INTEGER PRIMARY KEY AUTOINCREMENT,
             userid TEXT,
@@ -31,7 +30,7 @@ class SQL:
             Time TEXT,
             Done TEXT NOT NULL DEFAULT NO
             )""")
-        self.cursor.execute('''CREATE TABLE IF NOT EXISTS `Agents` (
+        self.cursor.execute("""CREATE TABLE IF NOT EXISTS `Agents` (
             Id INTEGER PRIMARY KEY AUTOINCREMENT,
             telegramID TEXT,
             TelegramNikName TEXT,
@@ -39,7 +38,7 @@ class SQL:
             Percent INT,
             BinancePayID TEXT,
             TRC20 TEXT
-            )''')
+            )""")
         self.conn.commit()
 
 
