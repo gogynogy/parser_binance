@@ -23,7 +23,7 @@ def course_VND_USDT(minu):
     return course_LKR - minu
 
 def get_text_admin():
-    bank_RUS = ['TinkoffNew']
+    bank_RUS = ['PostBankNew']
     bank_SRI = ['BANK']
     LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
     RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
@@ -53,7 +53,7 @@ def get_text_admin():
     return text
 
 def get_text_admin_viet():
-    bank_RUS = ['TinkoffNew']
+    bank_RUS = ['PostBankNew']
     bank_SRI = ['BANK']
     VND_USDT = CrossratesGetter('VND', 'USDT', "sell", bank_SRI)
     RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
@@ -83,7 +83,7 @@ def get_text_admin_viet():
 
 
 def get_start_text():
-    bank_RUS = ['TinkoffNew']
+    bank_RUS = ['PostBankNew']
     bank_SRI = ['BANK']
     LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
     RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
