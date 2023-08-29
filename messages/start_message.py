@@ -22,12 +22,13 @@ def course_VND_USDT(minu):
     course_LKR = int(mean(LKR_USDT.give_list()))
     return course_LKR - minu
 
-def get_text_admin():
-    bank_RUS = ['PostBankNew']
+def get_text_admin_rub():
+    bank_RUS = ['RaiffeisenBank']
     bank_SRI = ['BANK']
     LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
     RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
     course_LKR = int(mean(LKR_USDT.give_list()))
+    print(course_LKR)
     course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
     curency = course_LKR / course_RUB
     probel = '         |       '
@@ -51,6 +52,23 @@ def get_text_admin():
            f'RUB к LKR - 5%              {round(get_percent(course_LKR, 5)/course_RUB, 2)}\n' \
            f'RUB к LKR - 6%              {round(get_percent(course_LKR, 6)/course_RUB, 2)}\n'
     return text
+
+def get_text_admin():
+    bank_SRI = ['BANK']
+    LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
+    course_LKR = int(mean(LKR_USDT.give_list()))
+    print(course_LKR)
+    probel = '         |       '
+    text = f'Актуальный курс RUB/LKR на <b>{give_time()}</b>\n\n' \
+           f'USDT к LKR                    {round(course_LKR)}\n' \
+           f'USDT к LKR - 1%           {round(get_percent(course_LKR, 1), 1)}\n' \
+           f'USDT к LKR - 2%           {round(get_percent(course_LKR, 2), 1)}\n' \
+           f'USDT к LKR - 3%           {round(get_percent(course_LKR, 3), 1)}\n' \
+           f'USDT к LKR - 4%           {round(get_percent(course_LKR, 4), 1)}\n' \
+           f'USDT к LKR - 5%           {round(get_percent(course_LKR, 5), 1)}\n' \
+           f'USDT к LKR - 6%           {round(get_percent(course_LKR, 6), 1)}'
+    return text
+
 
 def get_text_admin_viet():
     bank_RUS = ['PostBankNew']
