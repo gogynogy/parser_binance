@@ -35,17 +35,16 @@ def get_rub_rates():
         'countries': [],
         'fiat': "RUB",
         'page': 1,
-        'payTypes': ['PostBankNew'],
+        'payTypes': ['PostBankNew',],
         'proMerchantAds': False,
         'publisherType': None,
         'rows': 10,
         'shieldMerchantAds': False,
-        'tradeType': "SELL"
+        'tradeType': "BUY"
     }
 
     response = requests.post(url=url, json=params).json()
     return response
 
-
-print(get_lkr_rates()['data'][2]['adv']['price'])
+print(get_lkr_rates())
 print(get_rub_rates())

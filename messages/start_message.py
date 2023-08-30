@@ -22,7 +22,7 @@ def course_VND_USDT(minu):
     course_LKR = int(mean(LKR_USDT.give_list()))
     return course_LKR - minu
 
-def get_text_admin_rub():
+def get_text_admin2():
     bank_RUS = ['RaiffeisenBank']
     bank_SRI = ['BANK']
     LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
@@ -66,7 +66,7 @@ def get_text_admin():
            f'USDT к LKR - 3%           {round(get_percent(course_LKR, 3), 1)}\n' \
            f'USDT к LKR - 4%           {round(get_percent(course_LKR, 4), 1)}\n' \
            f'USDT к LKR - 5%           {round(get_percent(course_LKR, 5), 1)}\n' \
-           f'USDT к LKR - 6%           {round(get_percent(course_LKR, 6), 1)}'
+           f'USDT к LKR - 6%           {round(get_percent(course_LKR, 6), 1)}\n\n'
     return text
 
 
@@ -122,6 +122,7 @@ def get_start_text():
         f'<b>Аэропорт Негомбо</b> (Доставка от 300 000 рупий)\n\n' \
         f'300 000{probel}{get_percent(curency, 7)}{probel}{int(round(300000 / get_percent(curency, 7), -2))}\n\n' \
         f'500 000{probel}{get_percent(curency, 6)}{probel}{int(round(500000 / get_percent(curency, 6), -2))}'
+    text = 'Сейчас ведутся тех работы, по обмену можно писать на прямую @BOMBAMBALEY'
     return text
 
 
