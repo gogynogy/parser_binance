@@ -5,6 +5,8 @@ from p2p_parser import CrossratesGetter, give_rus_course, get_percent
 from datetime import datetime
 import pytz
 
+from bybit_parser import get_rub_rate_bybit
+
 
 def give_time():
     timenow = datetime.now(pytz.timezone('Asia/Colombo')).strftime("%d.%m.%Y %H:%M")
@@ -22,14 +24,11 @@ def course_VND_USDT(minu):
     course_LKR = int(mean(LKR_USDT.give_list()))
     return course_LKR - minu
 
-def get_text_admin2():
-    bank_RUS = ['RaiffeisenBank']
+def get_text_admin():
     bank_SRI = ['BANK']
     LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
-    RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
+    course_RUB = get_rub_rate_bybit()
     course_LKR = int(mean(LKR_USDT.give_list()))
-    print(course_LKR)
-    course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
     curency = course_LKR / course_RUB
     probel = '         |       '
     text = f'Актуальный курс RUB/LKR на <b>{give_time()}</b>\n\n' \
@@ -53,28 +52,12 @@ def get_text_admin2():
            f'RUB к LKR - 6%              {round(get_percent(course_LKR, 6)/course_RUB, 2)}\n'
     return text
 
-def get_text_admin():
-    bank_SRI = ['BANK']
-    LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
-    course_LKR = int(mean(LKR_USDT.give_list()))
-    print(course_LKR)
-    probel = '         |       '
-    text = f'Актуальный курс RUB/LKR на <b>{give_time()}</b>\n\n' \
-           f'USDT к LKR                    {round(course_LKR)}\n' \
-           f'USDT к LKR - 1%           {round(get_percent(course_LKR, 1), 1)}\n' \
-           f'USDT к LKR - 2%           {round(get_percent(course_LKR, 2), 1)}\n' \
-           f'USDT к LKR - 3%           {round(get_percent(course_LKR, 3), 1)}\n' \
-           f'USDT к LKR - 4%           {round(get_percent(course_LKR, 4), 1)}\n' \
-           f'USDT к LKR - 5%           {round(get_percent(course_LKR, 5), 1)}\n' \
-           f'USDT к LKR - 6%           {round(get_percent(course_LKR, 6), 1)}\n\n'
-    return text
 
 
 def get_text_admin_viet():
-    bank_RUS = ['PostBankNew']
     bank_SRI = ['BANK']
     VND_USDT = CrossratesGetter('VND', 'USDT', "sell", bank_SRI)
-    RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
+    RUB_USDT = get_rub_rate_bybit()
     course_VND = int(mean(VND_USDT.give_list()))
     course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
     curency = course_VND / course_RUB
@@ -101,12 +84,10 @@ def get_text_admin_viet():
 
 
 def get_start_text():
-    bank_RUS = ['PostBankNew']
     bank_SRI = ['BANK']
     LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
-    RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
+    course_RUB = get_rub_rate_bybit()
     course_LKR = int(mean(LKR_USDT.give_list()))
-    course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
     curency = course_LKR / course_RUB
     probel = '         |       '
     text = f'Расчет курсов обмена рублей на Шри Ланке. \nДата актуализации: <b>{give_time()}</b>\n\n' \
@@ -122,7 +103,6 @@ def get_start_text():
         f'<b>Аэропорт Негомбо</b> (Доставка от 300 000 рупий)\n\n' \
         f'300 000{probel}{get_percent(curency, 7)}{probel}{int(round(300000 / get_percent(curency, 7), -2))}\n\n' \
         f'500 000{probel}{get_percent(curency, 6)}{probel}{int(round(500000 / get_percent(curency, 6), -2))}'
-    text = 'Сейчас ведутся тех работы, по обмену можно писать на прямую @BOMBAMBALEY'
     return text
 
 
