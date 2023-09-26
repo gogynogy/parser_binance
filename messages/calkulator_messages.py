@@ -1,5 +1,6 @@
 from statistics import mean
 
+from bybit_parser import get_rub_rate_bybit
 from p2p_parser import give_rus_course, CrossratesGetter, get_percent
 
 start_calkulator = 'Выбери первую валюту'
@@ -8,12 +9,10 @@ def third_kalculators(first, second):
     return f'Какую сумму надо перевести из {first} в {second}'
 
 def get_curensy_info(count):
-    bank_RUS = ['TinkoffNew']
     bank_SRI = ['BANK']
     LKR_USDT = CrossratesGetter('LKR', 'USDT', "sell", bank_SRI)
-    RUB_USDT = CrossratesGetter('RUB', 'USDT', 'buy', bank_RUS)
     course_LKR = int(mean(LKR_USDT.give_list()))
-    course_RUB = round(give_rus_course(mean(RUB_USDT.give_list())))
+    course_RUB = get_rub_rate_bybit()
     cost_usdt = round(count/get_percent(course_LKR, 1), 2)
     course_minus_persent = round(get_percent(course_LKR, 1) / course_RUB, 2)
     curency = course_LKR / course_RUB

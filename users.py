@@ -7,6 +7,7 @@ sokol = 211708769
 vi = 461549616
 pitopipito = 5560471144
 passindu = 1418189028
+ssasha = 666974850
 
 
 admins = [
@@ -22,35 +23,6 @@ agents = [
     om,
     mrAlex,
     vi,
-    passindu
-]
-
-veli = [
-    geo,
-    id_egor
-]
-
-mirissa = [
-    geo,
-    id_egor
-]
-
-una = [
-    geo,
-    id_egor
-]
-
-galle = [
-    geo,
-    id_egor
-]
-
-colombo = [
-    geo,
-    id_egor
-]
-
-kandi = [
-    geo,
-    id_egor
+    passindu,
+    ssasha
 ]
