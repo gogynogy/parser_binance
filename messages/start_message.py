@@ -42,7 +42,8 @@ def get_text_admin():
            f'USDT к LKR - 4%           {round(get_percent(course_LKR, 4), 1)}\n' \
            f'USDT к LKR - 5%           {round(get_percent(course_LKR, 5), 1)}\n' \
            f'USDT к LKR - 6%           {round(get_percent(course_LKR, 6), 1)}\n' \
-           f'USDT к LKR - 7%           {round(get_percent(course_LKR, 7), 1)}\n\n' \
+            f'USDT к LKR - 7%           {round(get_percent(course_LKR, 7), 1)}\n' \
+           f'USDT к LKR - 8%           {round(get_percent(course_LKR, 8), 1)}\n\n' \
            f'RUB к USDT                   {round(course_RUB, 2)}\n\n' \
            f'RUB к LKR                      {round(curency, 2)}\n' \
            f'RUB к LKR - 1%              {round(get_percent(course_LKR, 1)/course_RUB, 2)}\n' \
@@ -50,7 +51,10 @@ def get_text_admin():
            f'RUB к LKR - 3%              {round(get_percent(course_LKR, 3)/course_RUB, 2)}\n' \
            f'RUB к LKR - 4%              {round(get_percent(course_LKR, 4)/course_RUB, 2)}\n' \
            f'RUB к LKR - 5%              {round(get_percent(course_LKR, 5)/course_RUB, 2)}\n' \
-           f'RUB к LKR - 6%              {round(get_percent(course_LKR, 6)/course_RUB, 2)}\n'
+           f'RUB к LKR - 6%              {round(get_percent(course_LKR, 6)/course_RUB, 2)}\n' \
+            f'RUB к LKR - 7%              {round(get_percent(course_LKR, 7)/course_RUB, 2)}\n' \
+             f'RUB к LKR - 8%              {round(get_percent(course_LKR, 8)/course_RUB, 2)}'
+
     return text
 
 
