@@ -8,6 +8,7 @@ vi = 461549616
 pitopipito = 5560471144
 passindu = 1418189028
 ssasha = 666974850
+her_znaet_kto = 1299880986
 
 
 admins = [
@@ -24,5 +25,6 @@ agents = [
     mrAlex,
     vi,
     passindu,
-    ssasha
+    ssasha,
+    her_znaet_kto
 ]
