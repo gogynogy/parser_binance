@@ -59,9 +59,8 @@ def get_text_admin():
 def get_text_admin_viet():
     bank_SRI = ['BANK']
     VND_USDT = CrossratesGetter('VND', 'USDT', "sell", bank_SRI)
-    RUB_USDT = get_rub_rate_bybit()
     course_VND = int(mean(VND_USDT.give_list()))
-    course_RUB = give_rus_course(mean(RUB_USDT.give_list()))
+    course_RUB = get_rub_rate_bybit()
     curency = course_VND / course_RUB
     probel = '         |       '
     text = f'Актуальный курс RUB/VND на <b>{give_time()}</b>\n\n' \
