@@ -9,6 +9,7 @@ pitopipito = 5560471144
 passindu = 1418189028
 ssasha = 666974850
 her_znaet_kto = 1299880986
+esche_her_znaet_kto = 323411226
 
 
 admins = [
@@ -26,5 +27,6 @@ agents = [
     vi,
     passindu,
     ssasha,
-    her_znaet_kto
+    her_znaet_kto,
+    esche_her_znaet_kto
 ]
