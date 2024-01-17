@@ -31,6 +31,5 @@ agents = [
     ssasha,
     her_znaet_kto,
     esche_her_znaet_kto,
-    nata1,
-    nata2
+    nata1
 ]
