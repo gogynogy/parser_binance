@@ -11,7 +11,7 @@ ssasha = 666974850
 her_znaet_kto = 1299880986
 esche_her_znaet_kto = 323411226
 nata1 = 498332094
-nata2 = 498332094
+nata2 = 5428500908
 
 
 admins = [
