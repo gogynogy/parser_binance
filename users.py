@@ -10,7 +10,7 @@ passindu = 1418189028
 ssasha = 666974850
 her_znaet_kto = 1299880986
 esche_her_znaet_kto = 323411226
-nata2 = 5428500908
+nata2 = 280001211
 nata3 = 498332094
 
 
